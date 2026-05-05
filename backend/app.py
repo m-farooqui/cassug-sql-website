@@ -134,19 +134,10 @@ def get_paragraph_text_and_links(paragraph):
     }
 
 
-def make_item(text, embedded_links=None):
-    embedded_links = embedded_links or []
-    raw_links = re.findall(r"https?://\S+", text)
-    title = text.split(":", 1)[0].strip() if ":" in text else text
-
-    item = {
-        "title": title[:100],
-        "description": text,
-    }
-
+def get_links_from_text(text):
     links = []
 
-    for url in raw_links:
+    for url in re.findall(r"https?://\S+", text):
         links.append(
             {
                 "label": "Open Link",
@@ -155,29 +146,62 @@ def make_item(text, embedded_links=None):
             }
         )
 
-    links.extend(embedded_links)
+    return links
 
-    unique_links = []
+
+def unique_links(links):
+    unique = []
     seen = set()
 
     for link in links:
         url = link.get("url")
         if url and url not in seen:
-            unique_links.append(link)
+            unique.append(link)
             seen.add(url)
 
-    if unique_links:
-        item["links"] = unique_links
+    return unique
+
+
+def make_item(text, embedded_links=None):
+    embedded_links = embedded_links or []
+    title = text.split(":", 1)[0].strip() if ":" in text else text.strip()
+
+    links = unique_links(get_links_from_text(text) + embedded_links)
+
+    item = {
+        "title": title[:100],
+        "description": text.strip(),
+    }
+
+    if links:
+        item["links"] = links
 
     return item
 
 
-def is_month_line(line):
-    return re.match(
-        r"^(January|February|March|April|May|June|July|August|September|October|November|December):",
-        line,
-        re.IGNORECASE,
-    )
+def make_group_item(title, rows):
+    description_lines = []
+    links = []
+
+    for row in rows:
+        line = row["text"].strip()
+        if line:
+            description_lines.append(line)
+
+        links.extend(get_links_from_text(line))
+        links.extend(row.get("links", []))
+
+    item = {
+        "title": title[:100],
+        "description": " ".join(description_lines).strip(),
+    }
+
+    final_links = unique_links(links)
+
+    if final_links:
+        item["links"] = final_links
+
+    return item
 
 
 def skip_sponsor_text(line):
@@ -192,6 +216,70 @@ def skip_sponsor_text(line):
     ]
 
     return any(s in lower for s in skip)
+
+
+def is_announcement_heading(line):
+    lower = line.lower().strip()
+
+    headings = [
+        "new location",
+        "speakers",
+        "speakers!",
+        "speakers for cassug",
+        "speakers for cassug!",
+        "cassug special events",
+        "day of data albany",
+        "sql saturday albany",
+        "cookout",
+        "holiday party",
+    ]
+
+    if any(lower.startswith(h) for h in headings):
+        return True
+
+    if len(line) <= 60 and not line.startswith("http") and not line.endswith("."):
+        if line.endswith("!") or line.endswith("?"):
+            return True
+
+    return False
+
+
+def group_announcement_rows(rows):
+    grouped = []
+    current = []
+    current_title = ""
+
+    for row in rows:
+        line = row["text"].strip()
+
+        if not line or skip_sponsor_text(line):
+            continue
+
+        if is_announcement_heading(line):
+            if current:
+                grouped.append(make_group_item(current_title, current))
+
+            current = [row]
+            current_title = line.split(":", 1)[0].strip()
+        else:
+            if not current:
+                current = [row]
+                current_title = line.split(":", 1)[0].strip()
+            else:
+                current.append(row)
+
+    if current:
+        grouped.append(make_group_item(current_title, current))
+
+    return grouped
+
+
+def is_month_line(line):
+    return re.match(
+        r"^(January|February|March|April|May|June|July|August|September|October|November|December):",
+        line,
+        re.IGNORECASE,
+    )
 
 
 def extract_first_link(text, embedded_links=None):
@@ -255,16 +343,7 @@ def parse_speaker_topic(line):
 
 def finalize_meetings(meetings):
     for meeting in meetings:
-        unique_links = []
-        seen_urls = set()
-
-        for link in meeting.get("links", []):
-            url = link.get("url", "")
-            if url and url not in seen_urls:
-                unique_links.append(link)
-                seen_urls.add(url)
-
-        meeting["links"] = unique_links
+        meeting["links"] = unique_links(meeting.get("links", []))
 
         if not meeting["links"] and meeting.get("link"):
             meeting["links"] = [
@@ -297,6 +376,88 @@ def finalize_meetings(meetings):
     return meetings
 
 
+def is_event_group_start(line):
+    stripped = line.strip()
+    lower = stripped.lower()
+
+    if not stripped:
+        return False
+
+    detail_starters = [
+        "more info",
+        "register",
+        "rsvp",
+        "group info",
+        "event info",
+        "some are virtual",
+        "no meetings",
+        "frequent",
+        "upcoming",
+        "active group",
+        "periodic",
+        "free with",
+        "save $",
+        "scholarships",
+        "includes",
+        "additional events",
+        "open cfs",
+        "currently has",
+    ]
+
+    if any(lower.startswith(s) for s in detail_starters):
+        return False
+
+    if stripped.startswith("http"):
+        return False
+
+    if ":" in stripped:
+        return True
+
+    if len(stripped) <= 80 and not stripped.endswith("."):
+        return True
+
+    return False
+
+
+def title_from_event_line(line):
+    clean = line.strip()
+
+    if ":" in clean:
+        return clean.split(":", 1)[0].strip()
+
+    return clean[:100]
+
+
+def group_event_rows(rows):
+    grouped = []
+    current = []
+    current_title = ""
+
+    for row in rows:
+        line = row["text"].strip()
+
+        if not line:
+            continue
+
+        if is_event_group_start(line):
+            if current:
+                grouped.append(make_group_item(current_title, current))
+
+            current = [row]
+            current_title = title_from_event_line(line)
+        else:
+            if not current:
+                current = [row]
+                current_title = title_from_event_line(line)
+            else:
+                current.append(row)
+
+    if current:
+        grouped.append(make_group_item(current_title, current))
+
+    return grouped
+
+
 def parse_docx(docx_path, source_file_name):
     doc = Document(docx_path)
 
@@ -306,12 +467,12 @@ def parse_docx(docx_path, source_file_name):
         if p.text.strip()
     ]
 
-    announcements = []
+    announcement_rows = []
     meetings = []
-    virtual_events = []
-    virtual_user_groups = []
-    in_person_events = []
-    paid_events = []
+    virtual_event_rows = []
+    virtual_user_group_rows = []
+    in_person_event_rows = []
+    paid_event_rows = []
     jobs = []
     archive = []
 
@@ -344,8 +505,7 @@ def parse_docx(docx_path, source_file_name):
             continue
 
         if section == "announcements":
-            if not skip_sponsor_text(line):
-                announcements.append(make_item(line, embedded_links))
+            announcement_rows.append(row)
             continue
 
         if section == "meetings":
@@ -401,27 +561,36 @@ def parse_docx(docx_path, source_file_name):
 
             continue
 
+        if section == "virtual_events":
+            virtual_event_rows.append(row)
+            continue
+
+        if section == "virtual_user_groups":
+            virtual_user_group_rows.append(row)
+            continue
+
+        if section == "in_person_events":
+            in_person_event_rows.append(row)
+            continue
+
+        if section == "paid_events":
+            paid_event_rows.append(row)
+            continue
+
         item = make_item(line, embedded_links)
 
-        if section == "virtual_events":
-            virtual_events.append(item)
-
-        elif section == "virtual_user_groups":
-            virtual_user_groups.append(item)
-
-        elif section == "in_person_events":
-            in_person_events.append(item)
-
-        elif section == "paid_events":
-            paid_events.append(item)
-
-        elif section == "jobs":
+        if section == "jobs":
             jobs.append(item)
 
         elif section == "archive":
             archive.append(item)
 
+    announcements = group_announcement_rows(announcement_rows)
     meetings = finalize_meetings(meetings)
+    virtual_events = group_event_rows(virtual_event_rows)
+    virtual_user_groups = group_event_rows(virtual_user_group_rows)
+    in_person_events = group_event_rows(in_person_event_rows)
+    paid_events = group_event_rows(paid_event_rows)
 
     archive.insert(
         0,

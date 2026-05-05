@@ -1,0 +1,40 @@
+[
+  {
+    "title": "May Meeting",
+    "month": "May",
+    "date": "Monday, May 18th",
+    "time": "5:30",
+    "location": "Troy Web Consulting",
+    "speaker": "Andy Levy",
+    "topic": "Documenting Your Work for Worry-Free Vacations",
+    "raw_text": "May: Monday, May 18th at 5:30 @ Troy Web Consulting",
+    "description": "Date: Monday, May 18th | Time: 5:30 | Location: Troy Web Consulting | Speaker: Andy Levy | Topic: Documenting Your Work for Worry-Free Vacations",
+    "link": "https://www.meetup.com/capital-area-sql-server-user-group/events/310986182",
+    "links": [
+      {
+        "label": "Meetup / Register",
+        "url": "https://www.meetup.com/capital-area-sql-server-user-group/events/310986182",
+        "highlight": true
+      }
+    ]
+  },
+  {
+    "title": "June Meeting",
+    "month": "June",
+    "date": "Monday, June 15th",
+    "time": "5:30",
+    "location": "Troy Web Consulting",
+    "speaker": "Kalyan Inturi",
+    "topic": "Centralizing Identity Data at Scale: Lessons from Building a Unified Auth Platform on SQL Server",
+    "raw_text": "June: Monday, June 15th at 5:30 @ Troy Web Consulting",
+    "description": "Date: Monday, June 15th | Time: 5:30 | Location: Troy Web Consulting | Speaker: Kalyan Inturi | Topic: Centralizing Identity Data at Scale: Lessons from Building a Unified Auth Platform on SQL Server",
+    "link": "https://www.meetup.com/capital-area-sql-server-user-group/events/312472613",
+    "links": [
+      {
+        "label": "Meetup / Register",
+        "url": "https://www.meetup.com/capital-area-sql-server-user-group/events/312472613",
+        "highlight": true
+      }
+    ]
+  }
+]

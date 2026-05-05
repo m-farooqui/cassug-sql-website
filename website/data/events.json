@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Microsoft Learn Data Training",
+    "date": "Ongoing",
+    "location": "Online",
+    "description": "Free Microsoft learning paths for SQL Server, Azure SQL, Power BI, and Fabric.",
+    "link": "https://learn.microsoft.com/"
+  },
+  {
+    "title": "SQL Saturday / Data Platform Event",
+    "date": "Check Schedule",
+    "location": "Various / Online",
+    "description": "Community events for SQL Server and Microsoft data professionals.",
+    "link": "https://sqlsaturday.com/"
+  }
+]

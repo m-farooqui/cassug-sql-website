@@ -1,0 +1,83 @@
+{
+  "articles": [
+    {
+      "title": "Microsoft SQL Server Documentation",
+      "description": "Official Microsoft documentation for SQL Server.",
+      "link": "https://learn.microsoft.com/en-us/sql/sql-server/"
+    },
+    {
+      "title": "Azure SQL Documentation",
+      "description": "Learn about Azure SQL Database and cloud database services.",
+      "link": "https://learn.microsoft.com/en-us/azure/azure-sql/"
+    },
+    {
+      "title": "Power BI Learning",
+      "description": "Official Power BI learning resources from Microsoft.",
+      "link": "https://learn.microsoft.com/en-us/power-bi/"
+    },
+    {
+      "title": "SQL Server GitHub Samples",
+      "description": "Sample databases, scripts, and SQL Server examples.",
+      "link": "https://github.com/microsoft/sql-server-samples"
+    }
+  ],
+
+  "repos": [
+    {
+      "title": "Data Engineering Zoomcamp",
+      "description": "Full data engineering learning repo",
+      "link": "https://github.com/DataTalksClub/data-engineering-zoomcamp"
+    },
+    {
+      "title": "Awesome Data Science",
+      "description": "Curated list of data science resources",
+      "link": "https://github.com/academic/awesome-datascience"
+    },
+    {
+      "title": "SQL Practice Problems",
+      "description": "Practice SQL queries and real scenarios",
+      "link": "https://github.com/kanmaytacker/fundamentals"
+    },
+    {
+      "title": "DBT Jaffle Shop",
+      "description": "Modern analytics engineering project",
+      "link": "https://github.com/dbt-labs/jaffle_shop"
+    },
+    {
+      "title": "SQL Tutorial Repo",
+      "description": "Structured SQL learning repository",
+      "link": "https://github.com/ansh941/Master-SQL"
+    }
+  ],
+
+  "interview": [
+    {
+      "title": "LeetCode SQL Problems",
+      "description": "Practice SQL interview questions",
+      "link": "https://leetcode.com/problemset/database/"
+    },
+    {
+      "title": "StrataScratch",
+      "description": "Real company SQL interview questions",
+      "link": "https://www.stratascratch.com/"
+    },
+    {
+      "title": "Interview Query SQL Guide",
+      "description": "Top SQL interview prep material",
+      "link": "https://www.interviewquery.com/sql-interview-questions"
+    }
+  ],
+
+  "videos": [
+    {
+      "title": "SQL Full Course (freeCodeCamp)",
+      "description": "Complete SQL tutorial",
+      "link": "https://www.youtube.com/watch?v=HXV3zeQKqGY"
+    },
+    {
+      "title": "Data Engineering Roadmap",
+      "description": "Step-by-step career path",
+      "link": "https://www.youtube.com/watch?v=7sJ2GZz0u2E"
+    }
+  ]
+}

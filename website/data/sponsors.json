@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Troy Web Consulting",
+    "description": "Sponsor 2025-2026. Address: 135 Mohawk St, Cohoes, New York 12047",
+    "mapEmbed": "https://www.google.com/maps?q=135%20Mohawk%20St%20Cohoes%20New%20York%2012047&output=embed",
+    "links": [
+      {
+        "label": "Main Website",
+        "url": "https://www.troyweb.com/work",
+        "highlight": true
+      },
+      {
+        "label": "Open Positions",
+        "url": "https://careers.troyweb.com/",
+        "highlight": true
+      },
+      {
+        "label": "Google Maps Navigation",
+        "url": "https://www.google.com/maps/search/?api=1&query=135%20Mohawk%20St%20Cohoes%20New%20York%2012047",
+        "highlight": true
+      }
+    ]
+  },
+  {
+    "title": "New England SQL Server User Group",
+    "description": "Sponsor 2024-2026",
+    "links": [
+      {
+        "label": "Meetup Page",
+        "url": "https://www.meetup.com/nesqlug/",
+        "highlight": true
+      }
+    ]
+  }
+]

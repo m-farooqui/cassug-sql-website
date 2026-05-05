@@ -1,0 +1,21 @@
+services:
+  website:
+    image: nginx:alpine
+    container_name: sql-user-group-site
+    ports:
+      - "8080:80"
+    volumes:
+      - ./website:/usr/share/nginx/html
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: cassug-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./website:/website
+    environment:
+      - ADZUNA_APP_ID=e21eab1f
+      - ADZUNA_APP_KEY=f4a5404272522709be083d5837720ccc
+    restart: unless-stopped

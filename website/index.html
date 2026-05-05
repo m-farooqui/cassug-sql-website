@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CASSUG</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="overlay">
+
+  <header class="hero">
+    <h1>Capital Area SQL Server User Group</h1>
+    <p>SQL Server • Microsoft Data Platform • Azure • Power BI • Fabric</p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <button class="tab blue active" onclick="showTab('home', this)">Home</button>
+      <button class="tab green" onclick="showTab('sponsors', this)">Sponsors</button>
+      <button class="tab purple" onclick="showTab('announcements', this)">Announcements</button>
+      <button class="tab orange" onclick="showTab('meetings', this)">Meetings</button>
+      <button class="tab red" onclick="showTab('events', this)">Community Events</button>
+      <button class="tab teal" onclick="showTab('career', this)">Career Center</button>
+      <button class="tab violet" onclick="showTab('resources', this)">Resources</button>
+      <button class="tab dark" onclick="showTab('tools', this)">Tools</button>
+      <button class="tab gray" onclick="showTab('archive', this)">Archive</button>
+    </aside>
+
+    <main class="content">
+
+      <section id="home" class="tab-content active-content">
+        <h2>Welcome to CASSUG</h2>
+        <p>
+          A community hub for SQL Server, Microsoft Data Platform, Azure, Power BI, Fabric,
+          data careers, learning resources, and local events.
+        </p>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <h3>Next Meeting</h3>
+            <div id="home-next-meeting"></div>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Latest Announcement</h3>
+            <div id="home-announcement"></div>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Career Center</h3>
+            <p>Find jobs, improve your resume, and practice interview questions.</p>
+            <button class="mini-btn" onclick="showTabById('career')">View Career Center</button>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Learning Hub</h3>
+            <p>Explore SQL articles, GitHub repos, and videos.</p>
+            <button class="mini-btn" onclick="showTabById('resources')">View Resources</button>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Tools & Downloads</h3>
+            <p>Download database, data engineering, data science, and BI tools.</p>
+            <button class="mini-btn" onclick="showTabById('tools')">View Tools</button>
+          </div>
+
+          <div class="dashboard-card sponsor-highlight">
+            <h3>Sponsor Highlight</h3>
+            <div id="home-sponsor"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sponsors" class="tab-content">
+        <h2>Sponsors</h2>
+        <div id="sponsors-list"></div>
+      </section>
+
+      <section id="announcements" class="tab-content">
+        <h2>Announcements</h2>
+        <div id="announcements-list"></div>
+      </section>
+
+      <section id="meetings" class="tab-content">
+        <h2>CASSUG Meetings</h2>
+        <div id="meetings-list"></div>
+      </section>
+
+      <section id="events" class="tab-content">
+        <h2>Community Events</h2>
+
+        <h3>Virtual Events</h3>
+        <div id="virtual-events"></div>
+
+        <h3>Virtual User Groups</h3>
+        <div id="virtual-groups"></div>
+
+        <h3>In-Person Events</h3>
+        <div id="in-person-events"></div>
+
+        <h3>Paid Events</h3>
+        <div id="paid-events"></div>
+      </section>
+
+      <section id="career" class="tab-content">
+        <h2>Career Center</h2>
+
+        <div class="career-banner">
+          <h3>Find Jobs on Major Platforms</h3>
+          <p>Use these links to search for SQL Server, Power BI, Azure, and data-related jobs.</p>
+
+          <div class="job-links">
+            <a class="job-btn linkedin" href="https://www.linkedin.com/jobs/search/?keywords=SQL%20Server&location=Albany%2C%20New%20York" target="_blank">LinkedIn Jobs</a>
+            <a class="job-btn zip" href="https://www.ziprecruiter.com/jobs-search?search=SQL+Server&location=Albany%2C+NY" target="_blank">ZipRecruiter</a>
+            <a class="job-btn dice" href="https://www.dice.com/jobs?q=SQL%20Server&location=New%20York" target="_blank">Dice</a>
+            <a class="job-btn indeed" href="https://www.indeed.com/jobs?q=SQL+Server&l=Albany%2C+NY" target="_blank">Indeed</a>
+            <a class="job-btn usajobs" href="https://www.usajobs.gov/Search/Results?k=SQL%20Server" target="_blank">USAJOBS</a>
+          </div>
+        </div>
+
+        <div class="career-banner">
+          <h3>Live SQL / Data Jobs</h3>
+          <p>Pull live job listings using the Adzuna API.</p>
+
+          <div class="job-filter-row">
+            <select id="job-keyword">
+              <option value="SQL Server">SQL Server</option>
+              <option value="Power BI">Power BI</option>
+              <option value="Azure SQL">Azure SQL</option>
+              <option value="Data Analyst">Data Analyst</option>
+              <option value="Data Engineer">Data Engineer</option>
+              <option value="Business Intelligence">Business Intelligence</option>
+            </select>
+
+            <select id="job-location">
+              <option value="Albany, NY">Albany, NY</option>
+              <option value="Schenectady, NY">Schenectady, NY</option>
+              <option value="New York">New York</option>
+              <option value="Remote">Remote</option>
+              <option value="United States">United States</option>
+            </select>
+
+            <button class="load-jobs-btn" onclick="loadLiveJobs()">Load Jobs</button>
+          </div>
+
+          <div id="live-jobs-list">
+            <p>Click “Load Jobs” to pull live listings.</p>
+          </div>
+        </div>
+
+        <div class="career-banner">
+          <h3>Resume Templates</h3>
+          <div id="resume-templates"></div>
+        </div>
+
+        <div class="career-banner">
+          <h3>Resume Examples</h3>
+          <div id="resume-examples"></div>
+        </div>
+
+        <div class="career-banner">
+          <h3>Resume Tips & Best Practices</h3>
+          <div id="resume-tips"></div>
+        </div>
+
+        <div class="career-banner">
+          <h3>Resume Tools & Builders</h3>
+          <div id="resume-tools"></div>
+        </div>
+
+        <div class="career-banner">
+          <h3>Interview Preparation</h3>
+          <div id="interview-list"></div>
+        </div>
+      </section>
+
+      <section id="resources" class="tab-content">
+        <h2>Resources</h2>
+
+        <div class="resources-banner">
+          <h3>Articles & Learning</h3>
+          <div id="articles-list"></div>
+        </div>
+
+        <div class="resources-banner">
+          <h3>Top SQL / Data GitHub Repositories</h3>
+          <div id="repos-list"></div>
+        </div>
+
+        <div class="resources-banner">
+          <h3>Videos & Tutorials</h3>
+          <div id="videos-list"></div>
+        </div>
+      </section>
+
+      <section id="tools" class="tab-content">
+        <h2>Data Tools & Downloads</h2>
+
+        <div class="tools-banner">
+          <h3>Databases</h3>
+          <div id="tools-databases"></div>
+        </div>
+
+        <div class="tools-banner">
+          <h3>Data Engineering Tools</h3>
+          <div id="tools-engineering"></div>
+        </div>
+
+        <div class="tools-banner">
+          <h3>Data Science / Machine Learning Tools</h3>
+          <div id="tools-science"></div>
+        </div>
+
+        <div class="tools-banner">
+          <h3>BI & Visualization Tools</h3>
+          <div id="tools-bi"></div>
+        </div>
+      </section>
+
+      <section id="archive" class="tab-content">
+        <h2>Meeting Notes / Archive</h2>
+        <div id="archive-list"></div>
+      </section>
+
+    </main>
+
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

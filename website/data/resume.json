@@ -1,0 +1,75 @@
+{
+  "templates": [
+    {
+      "title": "Overleaf CV / Resume Templates",
+      "description": "Browse professional LaTeX resume templates.",
+      "link": "https://www.overleaf.com/gallery/tagged/cv"
+    },
+    {
+      "title": "Microsoft Resume Templates",
+      "description": "Free resume templates from Microsoft Create.",
+      "link": "https://create.microsoft.com/en-us/templates/resumes"
+    },
+    {
+      "title": "Canva Resume Templates",
+      "description": "Modern resume templates with visual designs.",
+      "link": "https://www.canva.com/resumes/templates/"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Data Engineer Resume Examples",
+      "description": "Updated BeamJobs examples for data engineering roles.",
+      "link": "https://www.beamjobs.com/resumes/data-engineer-resume-examples"
+    },
+    {
+      "title": "Entry-Level Data Engineer Resume Examples",
+      "description": "Useful for people starting in data engineering.",
+      "link": "https://www.beamjobs.com/resumes/entry-level-data-engineer-resume-examples"
+    },
+    {
+      "title": "Azure Data Engineer Resume Examples",
+      "description": "Good examples for Azure/data platform roles.",
+      "link": "https://www.beamjobs.com/resumes/azure-data-engineer-resume-examples"
+    }
+  ],
+  "tips": [
+    {
+      "title": "Jobscan Resume Scanner",
+      "description": "Optimize your resume keywords for job descriptions.",
+      "link": "https://www.jobscan.co/"
+    },
+    {
+      "title": "Jobscan Resume Keywords Generator",
+      "description": "Find resume keywords from job descriptions.",
+      "link": "https://www.jobscan.co/resume-keywords-generator"
+    },
+    {
+      "title": "LinkedIn Resume Help",
+      "description": "LinkedIn explains how to create/download resumes from your profile.",
+      "link": "https://www.linkedin.com/help/linkedin/answer/a510363"
+    }
+  ],
+  "tools": [
+    {
+      "title": "Resume.io",
+      "description": "Resume builder and resume examples.",
+      "link": "https://resume.io/"
+    },
+    {
+      "title": "Kickresume",
+      "description": "Resume builder and LinkedIn-to-resume tool.",
+      "link": "https://www.kickresume.com/"
+    },
+    {
+      "title": "Enhancv LinkedIn Resume Builder",
+      "description": "Convert your LinkedIn profile into a resume.",
+      "link": "https://enhancv.com/linkedin-resume-builder/"
+    },
+    {
+      "title": "Overleaf",
+      "description": "Great for clean technical resumes.",
+      "link": "https://www.overleaf.com/"
+    }
+  ]
+}

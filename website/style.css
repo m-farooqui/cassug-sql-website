@@ -1,0 +1,374 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("images/sql-bg.png");
+  background-size: 900px auto;
+  background-position: center top;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+.overlay {
+  min-height: 100vh;
+  background: rgba(10, 15, 30, 0.78);
+  backdrop-filter: blur(3px);
+  padding-bottom: 20px;
+}
+
+.hero {
+  color: white;
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.hero p {
+  margin: 0;
+  font-size: 14px;
+  color: #dbeafe;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
+  max-width: 1180px;
+  margin: auto;
+  padding: 10px 20px;
+}
+
+.sidebar {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px;
+  border-radius: 14px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  width: 240px;
+}
+
+.tab {
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  opacity: 0.9;
+  transform: translateX(3px);
+}
+
+.active {
+  outline: 3px solid #111827;
+}
+
+.blue { background: #2563eb; }
+.green { background: #16a34a; }
+.purple { background: #7c3aed; }
+.orange { background: #f97316; }
+.red { background: #dc2626; }
+.teal { background: #0d9488; }
+.violet { background: #9333ea; }
+.dark { background: #111827; }
+.gray { background: #475569; }
+
+.content {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 20px;
+  border-radius: 14px;
+  min-height: 400px;
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.tab-content {
+  display: none;
+}
+
+.active-content {
+  display: block;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.dashboard-card {
+  background: #ffffff;
+  border-left: 5px solid #2563eb;
+  padding: 14px;
+  border-radius: 10px;
+  min-height: 130px;
+  overflow-wrap: anywhere;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.dashboard-card h3 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+.dashboard-card p {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.sponsor-highlight {
+  border-left-color: #16a34a;
+}
+
+.mini-btn,
+.mini-link {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mini-btn:hover,
+.mini-link:hover {
+  background: #1d4ed8;
+}
+
+.item,
+.job-card,
+.resource-card,
+.career-card,
+.tool-card,
+.meeting-card {
+  background: #ffffff;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.item { border-left: 5px solid #2563eb; }
+.job-card { border-left: 5px solid #0d9488; }
+.resource-card { border-left: 5px solid #9333ea; }
+.career-card { border-left: 5px solid #0d9488; }
+.tool-card { border-left: 5px solid #111827; }
+.meeting-card { border-left: 5px solid #f97316; }
+
+.item h4,
+.resource-card h4,
+.career-card h4,
+.tool-card h4,
+.job-card h4,
+.meeting-card h4 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.item p,
+.resource-card p,
+.career-card p,
+.tool-card p,
+.job-card p,
+.meeting-details p {
+  margin: 4px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.links {
+  margin-top: 8px;
+}
+
+.links a {
+  color: #60a5fa;
+  font-weight: bold;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.highlight-link {
+  display: inline-block;
+  background: #2563eb;
+  color: white !important;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin: 6px 6px 6px 0;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.highlight-link:hover {
+  background: #1d4ed8;
+}
+
+.calendar-links {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar-btn {
+  display: inline-block;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.calendar-btn.google { background: #1a73e8; }
+.calendar-btn.outlook { background: #0078d4; }
+.calendar-btn.yahoo { background: #6001d2; }
+.calendar-btn.apple { background: #111827; }
+
+.calendar-btn:hover {
+  opacity: 0.9;
+}
+
+.map-box {
+  margin-top: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #2563eb;
+}
+
+.map-box iframe {
+  width: 100%;
+  height: 220px;
+  border: 0;
+}
+
+.career-banner,
+.resources-banner,
+.tools-banner {
+  background: rgba(15, 23, 42, 0.08);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.career-banner { border-left: 5px solid #0d9488; }
+.resources-banner { border-left: 5px solid #9333ea; }
+.tools-banner { border-left: 5px solid #111827; }
+
+.job-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.job-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.job-btn.linkedin { background: #0077b5; }
+.job-btn.zip { background: #16a34a; }
+.job-btn.dice { background: #9333ea; }
+.job-btn.indeed { background: #003a9b; }
+.job-btn.usajobs { background: #2563eb; }
+
+.job-btn:hover {
+  opacity: 0.9;
+}
+
+.job-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.job-filter-row select {
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+}
+
+.load-jobs-btn {
+  background: #0d9488;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.load-jobs-btn:hover {
+  opacity: 0.9;
+}
+
+.meeting-details {
+  background: #fff7ed;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #0f172a;
+}
+
+h3 {
+  margin-top: 18px;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

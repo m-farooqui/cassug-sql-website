@@ -1,0 +1,93 @@
+{
+  "databases": [
+    {
+      "title": "PostgreSQL",
+      "description": "Open-source relational database",
+      "link": "https://www.postgresql.org/download/"
+    },
+    {
+      "title": "MySQL",
+      "description": "Popular open-source database",
+      "link": "https://dev.mysql.com/downloads/"
+    },
+    {
+      "title": "SQLite",
+      "description": "Lightweight embedded database",
+      "link": "https://www.sqlite.org/download.html"
+    },
+    {
+      "title": "MongoDB",
+      "description": "NoSQL document database",
+      "link": "https://www.mongodb.com/try/download/community"
+    }
+  ],
+
+  "data_engineering": [
+    {
+      "title": "Apache Airflow",
+      "description": "Workflow orchestration tool",
+      "link": "https://airflow.apache.org/"
+    },
+    {
+      "title": "Apache Spark",
+      "description": "Big data processing engine",
+      "link": "https://spark.apache.org/downloads.html"
+    },
+    {
+      "title": "Kafka",
+      "description": "Real-time streaming platform",
+      "link": "https://kafka.apache.org/downloads"
+    },
+    {
+      "title": "dbt",
+      "description": "Data transformation tool",
+      "link": "https://www.getdbt.com/"
+    }
+  ],
+
+  "data_science": [
+    {
+      "title": "Anaconda",
+      "description": "Python distribution for data science",
+      "link": "https://www.anaconda.com/download"
+    },
+    {
+      "title": "Jupyter Notebook",
+      "description": "Interactive coding environment",
+      "link": "https://jupyter.org/install"
+    },
+    {
+      "title": "TensorFlow",
+      "description": "Machine learning framework",
+      "link": "https://www.tensorflow.org/install"
+    },
+    {
+      "title": "Scikit-learn",
+      "description": "ML library for Python",
+      "link": "https://scikit-learn.org/stable/install.html"
+    }
+  ],
+
+  "bi_tools": [
+    {
+      "title": "Power BI Desktop",
+      "description": "Microsoft BI tool",
+      "link": "https://powerbi.microsoft.com/en-us/downloads/"
+    },
+    {
+      "title": "Tableau Public",
+      "description": "Free visualization tool",
+      "link": "https://public.tableau.com/en-us/s/download"
+    },
+    {
+      "title": "Metabase",
+      "description": "Open-source BI tool",
+      "link": "https://www.metabase.com/start/"
+    },
+    {
+      "title": "Apache Superset",
+      "description": "Open-source BI dashboard tool",
+      "link": "https://superset.apache.org/"
+    }
+  ]
+}

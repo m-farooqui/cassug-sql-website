@@ -1,0 +1,77 @@
+[
+  {
+    "title": "These are excellent opportunities to network, learn, and experience deep-dives into many data-relate",
+    "description": "These are excellent opportunities to network, learn, and experience deep-dives into many data-related topics.\t\nPASS Data Community Summit: https://passdatacommunitysummit.com/",
+    "links": [
+      {
+        "label": "Open Link",
+        "url": "https://passdatacommunitysummit.com/",
+        "highlight": true
+      }
+    ]
+  },
+  {
+    "title": "Chicago",
+    "description": "Chicago: May 7-8"
+  },
+  {
+    "title": "Frankfurt",
+    "description": "Frankfurt: June 10-11"
+  },
+  {
+    "title": "Seattle",
+    "description": "Seattle: November 9-11"
+  },
+  {
+    "title": "More Events",
+    "description": "More Events"
+  },
+  {
+    "title": "Additional events are posted here as they are announced",
+    "description": "Additional events are posted here as they are announced:"
+  },
+  {
+    "title": "https",
+    "description": "https://sqlsaturday.com/",
+    "links": [
+      {
+        "label": "Open Link",
+        "url": "https://sqlsaturday.com/",
+        "highlight": true
+      }
+    ]
+  },
+  {
+    "title": "https",
+    "description": "https://dataevents.co/microsoft",
+    "links": [
+      {
+        "label": "Open Link",
+        "url": "https://dataevents.co/microsoft",
+        "highlight": true
+      }
+    ]
+  },
+  {
+    "title": "https",
+    "description": "https://www.microsoft.com/en-us/events",
+    "links": [
+      {
+        "label": "Open Link",
+        "url": "https://www.microsoft.com/en-us/events",
+        "highlight": true
+      }
+    ]
+  },
+  {
+    "title": "Microsoft CFS",
+    "description": "Microsoft CFS: https://www.communitydays.org/calls",
+    "links": [
+      {
+        "label": "Open Link",
+        "url": "https://www.communitydays.org/calls",
+        "highlight": true
+      }
+    ]
+  }
+]

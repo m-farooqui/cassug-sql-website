@@ -28,30 +28,62 @@ function uniqueLinks(item) {
   }
 
   if (item.link && !seen.has(item.link)) {
-    links.push({ label: "Open Link", url: item.link, highlight: true });
+    links.push({
+      label: "Open Link",
+      url: item.link,
+      highlight: true
+    });
   }
 
   return links;
 }
 
+function renderLinkCards(items, id, buttonText = "Open Resource", emptyText = "No resources available.") {
+  const container = document.getElementById(id);
+  if (!container) return;
+
+  if (!Array.isArray(items) || items.length === 0) {
+    container.innerHTML = `<p>${emptyText}</p>`;
+    return;
+  }
+
+  container.innerHTML = items.map(item => `
+    <div class="resource-card">
+      <h4>${item.title || "No Title"}</h4>
+      <p>${item.description || ""}</p>
+      <a class="highlight-link" href="${item.link}" target="_blank">${buttonText}</a>
+    </div>
+  `).join("");
+}
+
 function parseMeetingDate(item) {
-  const text = `${item.month || ""} ${item.date || ""} at ${item.time || ""}`;
+  const sourceText = `${item.month || ""} ${item.date || ""} at ${item.time || ""} ${item.description || ""}`;
   const year = new Date().getFullYear();
 
-  const fallback = (item.description || "").match(
-    /(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:st|nd|rd|th)?\s+at\s+(\d{1,2})(?::(\d{2}))?/i
+  const match = sourceText.match(
+    /(January|February|March|April|May|June|July|August|September|October|November|December).*?(\d{1,2})(?:st|nd|rd|th)?.*?at\s+(\d{1,2})(?::(\d{2}))?/i
   );
 
-  if (!fallback) return null;
+  if (!match) return null;
 
-  const monthName = fallback[1];
-  const day = parseInt(fallback[2], 10);
-  let hour = parseInt(fallback[3], 10);
-  const minute = fallback[4] ? parseInt(fallback[4], 10) : 0;
+  const monthName = match[1];
+  const day = parseInt(match[2], 10);
+  let hour = parseInt(match[3], 10);
+  const minute = match[4] ? parseInt(match[4], 10) : 0;
 
   const months = {
-    january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
-    july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
+    january: 0,
+    february: 1,
+    march: 2,
+    april: 3,
+    may: 4,
+    june: 5,
+    july: 6,
+    august: 7,
+    september: 8,
+    october: 9,
+    november: 10,
+    december: 11
   };
 
   if (hour < 12) hour += 12;
@@ -121,6 +153,7 @@ function createCalendarLinks(item) {
 
 function renderMeetingCard(meeting) {
   const links = uniqueLinks(meeting);
+
   const linksHtml = links.map(link => {
     const className = link.highlight ? "highlight-link" : "";
     return `<a class="${className}" href="${link.url}" target="_blank">${link.label || "Open Link"}</a>`;
@@ -155,7 +188,7 @@ function renderMeetingCard(meeting) {
   `;
 }
 
-function render(items, id) {
+function renderStandardItems(items, id) {
   const container = document.getElementById(id);
   if (!container) return;
 
@@ -169,82 +202,28 @@ function render(items, id) {
     return;
   }
 
-  container.innerHTML = items.map(i => {
-    const description = cleanDescription(i.description);
-    const links = uniqueLinks(i);
+  container.innerHTML = items.map(item => {
+    const description = cleanDescription(item.description);
+    const links = uniqueLinks(item);
 
     const linksHtml = links.map(link => {
       const className = link.highlight ? "highlight-link" : "";
       return `<a class="${className}" href="${link.url}" target="_blank">${link.label || "Open Link"}</a>`;
     }).join(" ");
 
-    const mapHtml = i.mapEmbed
-      ? `<div class="map-box"><iframe src="${i.mapEmbed}" loading="lazy" allowfullscreen></iframe></div>`
+    const mapHtml = item.mapEmbed
+      ? `<div class="map-box"><iframe src="${item.mapEmbed}" loading="lazy" allowfullscreen></iframe></div>`
       : "";
 
     return `
       <div class="item">
-        <h4>${i.title || "No Title"}</h4>
+        <h4>${item.title || "No Title"}</h4>
         <p>${description}</p>
         <div class="links">${linksHtml}</div>
         ${mapHtml}
       </div>
     `;
   }).join("");
-}
-
-function renderCards(items, id, fallbackText = "No resources available.") {
-  const container = document.getElementById(id);
-  if (!container) return;
-
-  if (!Array.isArray(items) || items.length === 0) {
-    container.innerHTML = `<p>${fallbackText}</p>`;
-    return;
-  }
-
-  container.innerHTML = items.map(item => `
-    <div class="resource-card">
-      <h4>${item.title || "No Title"}</h4>
-      <p>${item.description || ""}</p>
-      <a class="highlight-link" href="${item.link}" target="_blank">Open Resource</a>
-    </div>
-  `).join("");
-}
-
-function renderCareerCards(items, id) {
-  const container = document.getElementById(id);
-  if (!container) return;
-
-  if (!Array.isArray(items) || items.length === 0) {
-    container.innerHTML = "<p>No career resources available.</p>";
-    return;
-  }
-
-  container.innerHTML = items.map(item => `
-    <div class="career-card">
-      <h4>${item.title || "No Title"}</h4>
-      <p>${item.description || ""}</p>
-      <a class="highlight-link" href="${item.link}" target="_blank">Open Resource</a>
-    </div>
-  `).join("");
-}
-
-function renderTools(items, id) {
-  const container = document.getElementById(id);
-  if (!container) return;
-
-  if (!Array.isArray(items) || items.length === 0) {
-    container.innerHTML = "<p>No tools available.</p>";
-    return;
-  }
-
-  container.innerHTML = items.map(item => `
-    <div class="tool-card">
-      <h4>${item.title || "No Title"}</h4>
-      <p>${item.description || ""}</p>
-      <a class="highlight-link" href="${item.link}" target="_blank">Download / Visit</a>
-    </div>
-  `).join("");
 }
 
 function renderHomeDashboard(meetings, announcements, sponsors) {
@@ -316,11 +295,11 @@ async function loadLiveJobs() {
 
     container.innerHTML = data.jobs.map(job => `
       <div class="job-card">
-        <h4>${job.title}</h4>
-        <p><strong>Company:</strong> ${job.company}</p>
-        <p><strong>Location:</strong> ${job.location}</p>
-        <p><strong>Source:</strong> ${job.source}</p>
-        <p>${job.description}</p>
+        <h4>${job.title || "No title"}</h4>
+        <p><strong>Company:</strong> ${job.company || "Unknown company"}</p>
+        <p><strong>Location:</strong> ${job.location || ""}</p>
+        <p><strong>Source:</strong> ${job.source || "Adzuna"}</p>
+        <p>${job.description || ""}</p>
         <a class="highlight-link" href="${job.link}" target="_blank">Apply / View Job</a>
       </div>
     `).join("");
@@ -352,40 +331,39 @@ function showTabById(tabId) {
 }
 
 async function init() {
-  const sponsors = await load("data/sponsors.json");
-  const announcements = await load("data/announcements.json");
-  const meetings = await load("data/meetings.json");
+  const sponsors = await load("/data/sponsors.json");
+  const announcements = await load("/data/announcements.json");
+  const meetings = await load("/data/meetings.json");
 
   renderHomeDashboard(meetings, announcements, sponsors);
 
-  render(sponsors, "sponsors-list");
-  render(announcements, "announcements-list");
-  render(meetings, "meetings-list");
-  render(await load("data/virtual-events.json"), "virtual-events");
-  render(await load("data/virtual-user-groups.json"), "virtual-groups");
-  render(await load("data/in-person-events.json"), "in-person-events");
-  render(await load("data/paid-events.json"), "paid-events");
-  render(await load("data/jobs.json"), "jobs-list");
-  render(await load("data/archive.json"), "archive-list");
+  renderStandardItems(sponsors, "sponsors-list");
+  renderStandardItems(announcements, "announcements-list");
+  renderStandardItems(meetings, "meetings-list");
+  renderStandardItems(await load("/data/virtual-events.json"), "virtual-events");
+  renderStandardItems(await load("/data/virtual-user-groups.json"), "virtual-groups");
+  renderStandardItems(await load("/data/in-person-events.json"), "in-person-events");
+  renderStandardItems(await load("/data/paid-events.json"), "paid-events");
+  renderStandardItems(await load("/data/archive.json"), "archive-list");
 
-  const resources = await load("data/resources.json");
-  renderCards(resources.articles, "articles-list");
-  renderCards(resources.repos, "repos-list");
-  renderCards(resources.videos, "videos-list");
+  const resources = await load("/data/resources.json");
+  renderLinkCards(resources.articles, "articles-list", "Open Resource", "No resources available.");
+  renderLinkCards(resources.repos, "repos-list", "Open Repository", "No repositories available.");
+  renderLinkCards(resources.videos, "videos-list", "Watch / Open", "No videos available.");
 
-  const resume = await load("data/resume.json");
-  renderCareerCards(resume.templates, "resume-templates");
-  renderCareerCards(resume.examples, "resume-examples");
-  renderCareerCards(resume.tips, "resume-tips");
-  renderCareerCards(resume.tools, "resume-tools");
+  const resume = await load("/data/resume.json");
+  renderLinkCards(resume.templates, "resume-templates", "Open Template", "No resume templates available.");
+  renderLinkCards(resume.examples, "resume-examples", "Open Example", "No resume examples available.");
+  renderLinkCards(resume.tips, "resume-tips", "Open Tip", "No resume tips available.");
+  renderLinkCards(resume.tools, "resume-tools", "Open Tool", "No resume tools available.");
 
-  renderCareerCards(resources.interview, "interview-list");
+  renderLinkCards(resources.interview, "interview-list", "Practice / Open", "No interview resources available.");
 
-  const tools = await load("data/tools.json");
-  renderTools(tools.databases, "tools-databases");
-  renderTools(tools.data_engineering, "tools-engineering");
-  renderTools(tools.data_science, "tools-science");
-  renderTools(tools.bi_tools, "tools-bi");
+  const tools = await load("/data/tools.json");
+  renderLinkCards(tools.databases, "tools-databases", "Download / Visit", "No tools available.");
+  renderLinkCards(tools.data_engineering, "tools-engineering", "Download / Visit", "No tools available.");
+  renderLinkCards(tools.data_science, "tools-science", "Download / Visit", "No tools available.");
+  renderLinkCards(tools.bi_tools, "tools-bi", "Download / Visit", "No tools available.");
 }
 
 init();

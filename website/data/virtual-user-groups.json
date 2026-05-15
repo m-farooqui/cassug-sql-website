@@ -1,86 +1,38 @@
 [
   {
     "title": "Capital District AWS Group",
-    "description": "Capital District AWS Group: https://www.meetup.com/ny-capital-district-aws-user-group",
+    "description": "Capital District AWS Group: https://www.meetup.com/ny-capital-district-aws-user-group No meetings currently scheduled Cloud Data Driven User Group: https://www.meetup.com/cloud-data-driven Frequent presentations on Thursdays. Topics coming up include: Agentic AI Finance, Next-gen SQL, and more! Croatia SQL Server UG: https://www.meetup.com/sql-server-user-group-croatia/ Upcoming meetings on SQL Server security, advanced analytics, and Fabric. Open CFS: https://sessionize.com/sql-server-user-group-croatia-26/ Data and AI Architecture Virtual Group: https://www.meetup.com/data-architecture-virtual-group No meetings currently scheduled. Currently has an open call for speakers: https://sessionize.com/data-and-ai-architecture-virtual-group-2026 Data TGIF: https://www.meetup.com/data-tgif/ No meetings currently scheduled",
     "links": [
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/ny-capital-district-aws-user-group",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled",
-    "description": "No meetings currently scheduled"
-  },
-  {
-    "title": "Cloud Data Driven User Group",
-    "description": "Cloud Data Driven User Group: https://www.meetup.com/cloud-data-driven",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/cloud-data-driven",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Frequent presentations on Thursdays. Topics coming up include",
-    "description": "Frequent presentations on Thursdays. Topics coming up include: Agentic AI Finance, Next-gen SQL, and more!"
-  },
-  {
-    "title": "Croatia SQL Server UG",
-    "description": "Croatia SQL Server UG: https://www.meetup.com/sql-server-user-group-croatia/",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/sql-server-user-group-croatia/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Upcoming meetings on SQL Server security, advanced analytics, and Fabric. Open CFS",
-    "description": "Upcoming meetings on SQL Server security, advanced analytics, and Fabric. Open CFS: https://sessionize.com/sql-server-user-group-croatia-26/",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://sessionize.com/sql-server-user-group-croatia-26/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Data and AI Architecture Virtual Group",
-    "description": "Data and AI Architecture Virtual Group: https://www.meetup.com/data-architecture-virtual-group",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/data-architecture-virtual-group",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled. Currently has an open call for speakers",
-    "description": "No meetings currently scheduled. Currently has an open call for speakers:"
-  },
-  {
-    "title": "https",
-    "description": "https://sessionize.com/data-and-ai-architecture-virtual-group-2026",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://sessionize.com/data-and-ai-architecture-virtual-group-2026",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Data TGIF",
-    "description": "Data TGIF: https://www.meetup.com/data-tgif/",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/data-tgif/",
@@ -89,12 +41,8 @@
     ]
   },
   {
-    "title": "No meetings currently scheduled",
-    "description": "No meetings currently scheduled"
-  },
-  {
     "title": "Database Professionals Virtual User Group",
-    "description": "Database Professionals Virtual User Group: https://www.meetup.com/dbavug",
+    "description": "Database Professionals Virtual User Group: https://www.meetup.com/dbavug Frequent presentations on Wednesdays. Topics coming up include: Database DevOps, Extended Events, and optimized locking.",
     "links": [
       {
         "label": "Open Link",
@@ -104,43 +52,19 @@
     ]
   },
   {
-    "title": "Frequent presentations on Wednesdays. Topics coming up include",
-    "description": "Frequent presentations on Wednesdays. Topics coming up include: Database DevOps, Extended Events, and optimized locking."
-  },
-  {
     "title": "Devon and Cornwall Microsoft Power BI User Group",
-    "description": "Devon and Cornwall Microsoft Power BI User Group: https://www.meetup.com/d-c_powerbi/",
+    "description": "Devon and Cornwall Microsoft Power BI User Group: https://www.meetup.com/d-c_powerbi/ Frequent events on Fabric, Azure, and PowerBI! Fabric Explorers Norway Fabric User Group: https://www.meetup.com/fabric-explorers-nofug/ No meetings currently scheduled (2x) Hampton Roads SQL Server User Group: https://www.meetup.com/hampton-roads-sql-server-user-group Monthly sessions. Upcoming session on advanced data protection strategies, data virtualization in SQL Server, and more!",
     "links": [
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/d-c_powerbi/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Frequent events on Fabric, Azure, and PowerBI!",
-    "description": "Frequent events on Fabric, Azure, and PowerBI!"
-  },
-  {
-    "title": "Fabric Explorers Norway Fabric User Group",
-    "description": "Fabric Explorers Norway Fabric User Group: https://www.meetup.com/fabric-explorers-nofug/",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/fabric-explorers-nofug/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled (2x)",
-    "description": "No meetings currently scheduled (2x)"
-  },
-  {
-    "title": "Hampton Roads SQL Server User Group",
-    "description": "Hampton Roads SQL Server User Group: https://www.meetup.com/hampton-roads-sql-server-user-group",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/hampton-roads-sql-server-user-group",
@@ -149,95 +73,39 @@
     ]
   },
   {
-    "title": "Monthly sessions. Upcoming session on advanced data protection strategies, data virtualization in SQ",
-    "description": "Monthly sessions. Upcoming session on advanced data protection strategies, data virtualization in SQL Server, and more!"
-  },
-  {
     "title": "Iowa Data Professionals Association",
-    "description": "Iowa Data Professionals Association:  https://www.meetup.com/dsmsql",
+    "description": "Iowa Data Professionals Association:  https://www.meetup.com/dsmsql No meetings currently scheduled (2x) Kansas City SQL Server User Group: https://www.meetup.com/kansas-city-sql-server-users-group No meetings currently scheduled (2x). Call for speakers is open: https://sessionize.com/virtual-kcssug-2026 LA Data Platform User Group: https://www.meetup.com/ladataplatform No meetings currently scheduled Microsoft Fabric Caf\u00e9: https://www.meetup.com/microsoft-fabric-cafe/ Upcoming meeting on new features in Fabric PASSMN: https://www.meetup.com/mn-sql-server-user-group-passmn Active group meets regularly. Has an active Discord server. Portland Fabric & PowerBI User group: https://www.meetup.com/portland-fabric-power-bi-user-group/ Active virtual group that meets monthly. Many upcoming sessions!",
     "links": [
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/dsmsql",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled (2x)",
-    "description": "No meetings currently scheduled (2x)"
-  },
-  {
-    "title": "Kansas City SQL Server User Group",
-    "description": "Kansas City SQL Server User Group: https://www.meetup.com/kansas-city-sql-server-users-group",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/kansas-city-sql-server-users-group",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled (2x). Call for speakers is open",
-    "description": "No meetings currently scheduled (2x). Call for speakers is open: https://sessionize.com/virtual-kcssug-2026",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://sessionize.com/virtual-kcssug-2026",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "LA Data Platform User Group",
-    "description": "LA Data Platform User Group: https://www.meetup.com/ladataplatform",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/ladataplatform",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled",
-    "description": "No meetings currently scheduled"
-  },
-  {
-    "title": "Microsoft Fabric Caf\u00e9",
-    "description": "Microsoft Fabric Caf\u00e9: https://www.meetup.com/microsoft-fabric-cafe/",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/microsoft-fabric-cafe/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Upcoming meeting on new features in Fabric",
-    "description": "Upcoming meeting on new features in Fabric"
-  },
-  {
-    "title": "PASSMN",
-    "description": "PASSMN: https://www.meetup.com/mn-sql-server-user-group-passmn",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/mn-sql-server-user-group-passmn",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Active group meets regularly. Has an active Discord server.",
-    "description": "Active group meets regularly. Has an active Discord server."
-  },
-  {
-    "title": "Portland Fabric & PowerBI User group",
-    "description": "Portland Fabric & PowerBI User group: https://www.meetup.com/portland-fabric-power-bi-user-group/",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/portland-fabric-power-bi-user-group/",
@@ -246,97 +114,39 @@
     ]
   },
   {
-    "title": "Active virtual group that meets monthly. Many upcoming sessions!",
-    "description": "Active virtual group that meets monthly. Many upcoming sessions!"
-  },
-  {
     "title": "Quad Cities Microsoft Data Platform User Group",
-    "description": "Quad Cities Microsoft Data Platform User Group: https://www.meetup.com/quadcitypass/",
+    "description": "Quad Cities Microsoft Data Platform User Group: https://www.meetup.com/quadcitypass/ Many upcoming virtual meetings! Rhode Island Data Platform User Group: https://www.meetup.com/rhode-island-data-platform-user-group Upcoming meetings on Fabric Lakehouse ETL and Semantic Models. SQL Friday: https://www.meetup.com/sql-friday No meetings currently scheduled Toronto Data Professionals Community: https://www.meetup.com/toronto-data-professionals-meetup-group Upcoming session on Fabric IQ Triangle SQL Server User Group: https://www.meetup.com/tripass Active group with frequent sessions. Vancouver Fabric and Power BI User Group: https://www.meetup.com/vancouver-fabric-and-power-bi-user-group Active group with monthly meetings. Upcoming meeting on AI-ready data surfaces",
     "links": [
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/quadcitypass/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Many upcoming virtual meetings!",
-    "description": "Many upcoming virtual meetings!"
-  },
-  {
-    "title": "Rhode Island Data Platform User Group",
-    "description": "Rhode Island Data Platform User Group: https://www.meetup.com/rhode-island-data-platform-user-group",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/rhode-island-data-platform-user-group",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Upcoming meetings on Fabric Lakehouse ETL and Semantic Models.",
-    "description": "Upcoming meetings on Fabric Lakehouse ETL and Semantic Models."
-  },
-  {
-    "title": "SQL Friday",
-    "description": "SQL Friday: https://www.meetup.com/sql-friday",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/sql-friday",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "No meetings currently scheduled",
-    "description": "No meetings currently scheduled"
-  },
-  {
-    "title": "Toronto Data Professionals Community",
-    "description": "Toronto Data Professionals Community: https://www.meetup.com/toronto-data-professionals-meetup-group",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/toronto-data-professionals-meetup-group",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Upcoming session on Fabric IQ",
-    "description": "Upcoming session on Fabric IQ"
-  },
-  {
-    "title": "Triangle SQL Server User Group",
-    "description": "Triangle SQL Server User Group: https://www.meetup.com/tripass",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/tripass",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Active group with frequent sessions.",
-    "description": "Active group with frequent sessions."
-  },
-  {
-    "title": "Vancouver Fabric and Power BI User Group",
-    "description": "Vancouver Fabric and Power BI User Group: https://www.meetup.com/vancouver-fabric-and-power-bi-user-group",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://www.meetup.com/vancouver-fabric-and-power-bi-user-group",
         "highlight": true
       }
     ]
-  },
-  {
-    "title": "Active group with monthly meetings. Upcoming meeting on AI-ready data surfaces",
-    "description": "Active group with monthly meetings. Upcoming meeting on AI-ready data surfaces"
   }
 ]

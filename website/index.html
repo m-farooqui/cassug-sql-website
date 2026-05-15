@@ -25,6 +25,10 @@
       <button class="tab red" onclick="showTab('events', this)">Community Events</button>
       <button class="tab teal" onclick="showTab('career', this)">Career Center</button>
       <button class="tab violet" onclick="showTab('resources', this)">Resources</button>
+
+      <!-- Opens Learning Lab in a new browser tab -->
+      <button class="tab blue" onclick="window.open('learning-lab.html', '_blank')">Learning Lab</button>
+
       <button class="tab dark" onclick="showTab('tools', this)">Tools</button>
       <button class="tab gray" onclick="showTab('archive', this)">Archive</button>
     </aside>
@@ -59,6 +63,12 @@
             <h3>Learning Hub</h3>
             <p>Explore SQL articles, GitHub repos, and videos.</p>
             <button class="mini-btn" onclick="showTabById('resources')">View Resources</button>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Practice Lab</h3>
+            <p>Practice SQL and Python directly from the website using hands-on learning pages.</p>
+            <button class="mini-btn" onclick="window.open('learning-lab.html', '_blank')">Open Learning Lab</button>
           </div>
 
           <div class="dashboard-card">
@@ -193,6 +203,38 @@
         <div class="resources-banner">
           <h3>Videos & Tutorials</h3>
           <div id="videos-list"></div>
+        </div>
+      </section>
+
+      <section id="learning-lab" class="tab-content">
+        <h2>Learning Lab</h2>
+
+        <div class="resources-banner">
+          <h3>Practice SQL</h3>
+          <p>
+            Open the SQL Practice Lab to write SQL queries in a browser-based SQL interface.
+            Once datasets are added, you will be able to practice against temporary database copies,
+            so the original files stay safe.
+          </p>
+          <a class="job-btn linkedin" href="sql-practice.html" target="_blank" rel="noopener noreferrer">Open SQL Practice</a>
+        </div>
+
+        <div class="resources-banner">
+          <h3>Practice Python</h3>
+          <p>
+            Open the Python Practice Lab to run Python in the browser using Pyodide.
+            This allows members to practice basic Python and later work with datasets without running
+            Python code directly on the backend server.
+          </p>
+          <a class="job-btn indeed" href="python-practice.html" target="_blank" rel="noopener noreferrer">Open Python Practice</a>
+        </div>
+
+        <div class="resources-banner">
+          <h3>Datasets Coming Soon</h3>
+          <p>
+            Datasets have not been added yet. Future datasets can include retail sales, healthcare,
+            student performance, finance, HR analytics, library systems, or other practice databases.
+          </p>
         </div>
       </section>
 

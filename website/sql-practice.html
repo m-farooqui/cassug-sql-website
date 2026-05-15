@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SQL Practice Lab | CASSUG</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="lab.css" />
+</head>
+<body>
+  <header class="lab-header">
+    <div>
+      <h1>SQL Practice Lab</h1>
+      <p>Practice SQL on temporary database copies.</p>
+    </div>
+  </header>
+
+  <nav class="lab-nav">
+    <a href="index.html">Home</a>
+    <a href="learning-lab.html">Learning Lab</a>
+    <a href="python-practice.html">Python Practice</a>
+  </nav>
+
+  <main class="lab-container lab-layout">
+    <section class="lab-card">
+      <h2>Dataset</h2>
+
+      <label for="datasetSelect">Choose dataset</label>
+      <select id="datasetSelect">
+        <option value="">No datasets added yet</option>
+      </select>
+
+      <div class="lab-button-row">
+        <button id="refreshDatasetsBtn" class="lab-secondary-button">Refresh Datasets</button>
+        <button id="startSessionBtn" class="lab-primary-button">Start SQL Session</button>
+        <button id="resetSessionBtn" class="lab-secondary-button">Reset Database Copy</button>
+      </div>
+
+      <p id="sessionStatus" class="lab-status-text">No SQL session started yet.</p>
+
+      <h3>Schema</h3>
+      <div id="schemaBox" class="lab-schema-box">
+        Start a session to view schema.
+      </div>
+    </section>
+
+    <section class="lab-card lab-large-card">
+      <h2>SQL Editor</h2>
+
+      <p class="lab-small-note">
+        Once a dataset is added, your SQL will run against a temporary copy of the database.
+        The original master database will stay unchanged.
+      </p>
+
+      <textarea id="sqlEditor" class="lab-code-editor" spellcheck="false">-- Choose a dataset and start a session first.
+-- Example later:
+-- SELECT * FROM table_name;</textarea>
+
+      <div class="lab-button-row">
+        <button id="runSqlBtn" class="lab-primary-button">Run SQL</button>
+        <button id="loadExampleBtn" class="lab-secondary-button">Load Example</button>
+        <button id="clearSqlBtn" class="lab-secondary-button">Clear</button>
+      </div>
+
+      <h3>Output</h3>
+      <pre id="sqlMessage" class="lab-output-box">Run a query to see output.</pre>
+
+      <h3>Results</h3>
+      <div id="resultsTable" class="lab-table-wrapper"></div>
+    </section>
+
+    <section class="lab-card">
+      <h2>Practice Questions</h2>
+
+      <p>
+        Practice questions will appear after datasets are added.
+      </p>
+
+      <ol class="lab-question-list">
+        <li>View all records from a table.</li>
+        <li>Filter records using WHERE.</li>
+        <li>Sort records using ORDER BY.</li>
+        <li>Join two or more tables.</li>
+        <li>Use GROUP BY for summaries.</li>
+        <li>Create temporary analysis tables.</li>
+        <li>Practice INSERT, UPDATE, and DELETE on your copy.</li>
+      </ol>
+
+      <h3>Reminder</h3>
+      <pre class="lab-output-box">Your SQL runs on a temporary database copy.
+The original dataset stays safe.</pre>
+    </section>
+  </main>
+
+  <footer class="lab-footer">
+    <p>CASSUG SQL Practice Lab</p>
+  </footer>
+
+  <script src="sql-practice.js"></script>
+</body>
+</html>

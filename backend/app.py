@@ -1,16 +1,24 @@
 import os
 import json
 import re
+import sqlite3
+import shutil
+import uuid
+import time
+from pathlib import Path
 from datetime import datetime
 
 import requests
 from docx import Document
-from fastapi import FastAPI, Query
+from pydantic import BaseModel
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+
 app = FastAPI()
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,6 +32,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ============================================================
+# ORIGINAL CASSUG WEBSITE / GITHUB DOCX CONFIGURATION
+# ============================================================
 
 GITHUB_OWNER = "EdwardPollack"
 GITHUB_REPO = "CASSUG"
@@ -106,6 +119,20 @@ def get_static_sponsors():
     ]
 
 
+def paragraph_has_bold(paragraph):
+    text = paragraph.text.strip()
+
+    if not text:
+        return False
+
+    bold_text = "".join(run.text for run in paragraph.runs if run.bold).strip()
+
+    if not bold_text:
+        return False
+
+    return len(bold_text) >= max(3, int(len(text) * 0.5))
+
+
 def get_paragraph_text_and_links(paragraph):
     text = paragraph.text.strip()
     links = []
@@ -131,6 +158,7 @@ def get_paragraph_text_and_links(paragraph):
     return {
         "text": text,
         "links": links,
+        "is_bold": paragraph_has_bold(paragraph),
     }
 
 
@@ -185,6 +213,7 @@ def make_group_item(title, rows):
 
     for row in rows:
         line = row["text"].strip()
+
         if line:
             description_lines.append(line)
 
@@ -376,59 +405,24 @@ def finalize_meetings(meetings):
     return meetings
 
 
-def is_event_group_start(line):
-    stripped = line.strip()
-    lower = stripped.lower()
+def is_section_heading(line):
+    headings = {
+        "sponsors",
+        "cassug upcoming meetings",
+        "upcoming free virtual events/user groups",
+        "virtual user groups",
+        "upcoming free in-person events",
+        "upcoming paid in-person events",
+        "more events",
+        "job opportunities",
+        "cassug today",
+        "resources",
+    }
 
-    if not stripped:
-        return False
-
-    detail_starters = [
-        "more info",
-        "register",
-        "rsvp",
-        "group info",
-        "event info",
-        "some are virtual",
-        "no meetings",
-        "frequent",
-        "upcoming",
-        "active group",
-        "periodic",
-        "free with",
-        "save $",
-        "scholarships",
-        "includes",
-        "additional events",
-        "open cfs",
-        "currently has",
-    ]
-
-    if any(lower.startswith(s) for s in detail_starters):
-        return False
-
-    if stripped.startswith("http"):
-        return False
-
-    if ":" in stripped:
-        return True
-
-    if len(stripped) <= 80 and not stripped.endswith("."):
-        return True
-
-    return False
+    return line.lower().strip() in headings
 
 
-def title_from_event_line(line):
-    clean = line.strip()
-
-    if ":" in clean:
-        return clean.split(":", 1)[0].strip()
-
-    return clean[:100]
-
-
-def group_event_rows(rows):
+def group_event_rows_by_bold(rows):
     grouped = []
     current = []
     current_title = ""
@@ -439,16 +433,16 @@ def group_event_rows(rows):
         if not line:
             continue
 
-        if is_event_group_start(line):
+        if row.get("is_bold") and not is_section_heading(line):
             if current:
                 grouped.append(make_group_item(current_title, current))
 
             current = [row]
-            current_title = title_from_event_line(line)
+            current_title = line.split(":", 1)[0].strip()
         else:
             if not current:
                 current = [row]
-                current_title = title_from_event_line(line)
+                current_title = line.split(":", 1)[0].strip()
             else:
                 current.append(row)
 
@@ -587,10 +581,11 @@ def parse_docx(docx_path, source_file_name):
 
     announcements = group_announcement_rows(announcement_rows)
     meetings = finalize_meetings(meetings)
-    virtual_events = group_event_rows(virtual_event_rows)
-    virtual_user_groups = group_event_rows(virtual_user_group_rows)
-    in_person_events = group_event_rows(in_person_event_rows)
-    paid_events = group_event_rows(paid_event_rows)
+
+    virtual_events = group_event_rows_by_bold(virtual_event_rows)
+    virtual_user_groups = group_event_rows_by_bold(virtual_user_group_rows)
+    in_person_events = group_event_rows_by_bold(in_person_event_rows)
+    paid_events = group_event_rows_by_bold(paid_event_rows)
 
     archive.insert(
         0,
@@ -610,6 +605,10 @@ def parse_docx(docx_path, source_file_name):
     write_json("jobs.json", jobs)
     write_json("archive.json", archive)
 
+
+# ============================================================
+# ORIGINAL WEBSITE API ROUTES
+# ============================================================
 
 @app.get("/")
 def home():
@@ -633,7 +632,10 @@ def sync_github_docx():
 
     file_name = latest_file["name"]
     download_url = latest_file["download_url"]
-    docx_path = "/tmp/latest-meeting-notes.docx"
+
+    tmp_dir = "/tmp"
+    os.makedirs(tmp_dir, exist_ok=True)
+    docx_path = os.path.join(tmp_dir, "latest-meeting-notes.docx")
 
     response = requests.get(download_url, timeout=30)
     response.raise_for_status()
@@ -713,6 +715,515 @@ def live_jobs(
             "message": f"Could not load jobs: {str(e)}",
         }
 
+
+# ============================================================
+# CASSUG LEARNING LAB API
+# SQL practice sessions using temporary SQLite database copies.
+# The original master database files stay untouched.
+# ============================================================
+
+BACKEND_DIR = Path(__file__).resolve().parent
+MASTER_DB_DIR = BACKEND_DIR / "data" / "databases" / "master"
+SESSION_DB_DIR = BACKEND_DIR / "data" / "databases" / "sessions"
+
+MASTER_DB_DIR.mkdir(parents=True, exist_ok=True)
+SESSION_DB_DIR.mkdir(parents=True, exist_ok=True)
+
+
+# ============================================================
+# DATASETS CONFIGURATION
+# These datasets are grouped by domain for SQL and Python practice.
+# SQLite database files are created by:
+# python load_domain_datasets.py
+# ============================================================
+
+DATASETS = {
+    "nyc_shootings": {
+        "domain": "Public Safety",
+        "name": "NYC Shootings Dataset",
+        "description": (
+            "Practice SQL and Python using shooting incident data from 2006 to present. "
+            "Includes borough, date, time, precinct, location classification, latitude, and longitude."
+        ),
+        "db_file": MASTER_DB_DIR / "nyc_shootings.db",
+        "tables": ["shootings"],
+        "frontend_csv_path": "nyc_shootings/Shootings_(2006-Present)_20260315.csv",
+    },
+
+    "crime_reports": {
+        "domain": "Public Safety",
+        "name": "Crime Reports Dataset",
+        "description": (
+            "Practice public safety analytics using crime report data with crime type, report date, "
+            "neighborhood, reporting area, and location fields."
+        ),
+        "db_file": MASTER_DB_DIR / "crime_reports.db",
+        "tables": ["crime_reports"],
+        "frontend_csv_path": "crime_reports/Crime_Reports_20240701.csv",
+    },
+
+    "consumer_complaints": {
+        "domain": "Finance",
+        "name": "Consumer Complaints Dataset",
+        "description": (
+            "Practice finance analytics using consumer complaint records. "
+            "Includes product, issue, company, state, response, dispute status, and complaint ID."
+        ),
+        "db_file": MASTER_DB_DIR / "consumer_complaints.db",
+        "tables": ["consumer_complaints"],
+        "frontend_csv_path": "consumer_complaints/consumer_complaints.csv",
+    },
+
+    "finance_economics": {
+        "domain": "Finance",
+        "name": "Finance and Economics Dataset",
+        "description": (
+            "Practice finance and economics analytics using market, inflation, unemployment, GDP, "
+            "interest rate, commodities, confidence, and spending indicators."
+        ),
+        "db_file": MASTER_DB_DIR / "finance_economics.db",
+        "tables": ["finance_economics"],
+        "frontend_csv_path": "finance_economics/finance_economics_dataset.csv",
+    },
+
+    "heart_health": {
+        "domain": "Healthcare",
+        "name": "Heart Health Survey Dataset",
+        "description": (
+            "Practice healthcare analytics using heart health survey data, lifestyle fields, "
+            "BMI, sleep, smoking, diabetes, and health indicators."
+        ),
+        "db_file": MASTER_DB_DIR / "heart_health.db",
+        "tables": ["heart_health"],
+        "frontend_csv_path": "heart_health/heart_2022_with_nans.csv",
+    },
+
+    "pharma_sales_hourly": {
+        "domain": "Healthcare",
+        "name": "Pharmaceutical Sales Hourly Dataset",
+        "description": (
+            "Practice healthcare time-series analytics using hourly pharmaceutical sales categories."
+        ),
+        "db_file": MASTER_DB_DIR / "pharma_sales_hourly.db",
+        "tables": ["pharma_sales_hourly"],
+        "frontend_csv_path": "pharma_sales_hourly/saleshourly.csv",
+    },
+
+    "student_grades": {
+        "domain": "Education",
+        "name": "Student Grades and Programs Dataset",
+        "description": (
+            "Practice education analytics using student grades, class type, school year, "
+            "grade level, and student program indicators."
+        ),
+        "db_file": MASTER_DB_DIR / "student_grades.db",
+        "tables": ["student_grades"],
+        "frontend_csv_path": "student_grades/StudentGradesAndPrograms.csv",
+    },
+
+    "education_career_success": {
+        "domain": "Education",
+        "name": "Education Career Success Dataset",
+        "description": (
+            "Practice education and career outcome analytics using GPA, field of study, internships, "
+            "projects, certifications, job offers, starting salary, satisfaction, and job level."
+        ),
+        "db_file": MASTER_DB_DIR / "education_career_success.db",
+        "tables": ["education_career_success"],
+        "frontend_csv_path": "education_career_success/education_career_success - Copy.csv",
+    },
+
+    "online_retail": {
+        "domain": "Retail / Business",
+        "name": "Online Retail Dataset",
+        "description": (
+            "Practice retail and business analytics using invoices, quantity, unit price, and customer ID."
+        ),
+        "db_file": MASTER_DB_DIR / "online_retail.db",
+        "tables": ["online_retail"],
+        "frontend_csv_path": "online_retail/Online Retail.csv",
+    },
+
+    "adidas_sales": {
+        "domain": "Retail / Business",
+        "name": "Adidas US Sales Dataset",
+        "description": (
+            "Practice retail and business analytics using sales by retailer, region, state, city, "
+            "product, price, units sold, total sales, operating profit, margin, and sales method."
+        ),
+        "db_file": MASTER_DB_DIR / "adidas_sales.db",
+        "tables": ["adidas_sales"],
+        "frontend_csv_path": "adidas_sales/Adidas US Sales Datasets.csv",
+    },
+}
+
+
+class StartSessionRequest(BaseModel):
+    dataset: str
+
+
+class RunSqlRequest(BaseModel):
+    session_id: str
+    query: str
+
+
+class ResetSessionRequest(BaseModel):
+    session_id: str
+
+
+def cleanup_old_sessions(max_age_seconds: int = 60 * 60 * 2):
+    now = time.time()
+
+    for file_path in SESSION_DB_DIR.glob("*.db"):
+        try:
+            age = now - file_path.stat().st_mtime
+            if age > max_age_seconds:
+                file_path.unlink()
+        except OSError:
+            pass
+
+
+def get_session_db_path(session_id: str) -> Path:
+    safe_session_id = (
+        session_id
+        .replace("/", "")
+        .replace("\\", "")
+        .replace("..", "")
+        .strip()
+    )
+
+    return SESSION_DB_DIR / f"{safe_session_id}.db"
+
+
+def get_dataset_by_session(session_id: str) -> str:
+    db_path = get_session_db_path(session_id)
+
+    if not db_path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="Session not found. Please start a new SQL practice session."
+        )
+
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT dataset FROM __session_metadata LIMIT 1;")
+        row = cursor.fetchone()
+
+        conn.close()
+
+        if not row:
+            raise HTTPException(
+                status_code=400,
+                detail="Session metadata missing."
+            )
+
+        return row[0]
+
+    except sqlite3.Error:
+        raise HTTPException(
+            status_code=400,
+            detail="Could not read session metadata."
+        )
+
+
+@app.get("/api/learning-lab/status")
+def learning_lab_status():
+    dataset_file_status = {}
+
+    for key, value in DATASETS.items():
+        db_file = value["db_file"]
+        dataset_file_status[key] = {
+            "domain": value.get("domain", "Other"),
+            "name": value["name"],
+            "db_file": str(db_file),
+            "exists": db_file.exists(),
+            "frontend_csv_path": value.get("frontend_csv_path", ""),
+        }
+
+    return {
+        "status": "running",
+        "message": "CASSUG Learning Lab API is active.",
+        "dataset_count": len(DATASETS),
+        "datasets_configured": list(DATASETS.keys()),
+        "dataset_file_status": dataset_file_status,
+    }
+
+
+@app.get("/api/datasets")
+def list_datasets():
+    """
+    Returns the datasets available for SQL and Python practice.
+    """
+    result = []
+
+    for key, value in DATASETS.items():
+        result.append(
+            {
+                "id": key,
+                "domain": value.get("domain", "Other"),
+                "name": value["name"],
+                "description": value["description"],
+                "tables": value["tables"],
+                "database_exists": value["db_file"].exists(),
+                "frontend_csv_path": value.get("frontend_csv_path", ""),
+            }
+        )
+
+    return {"datasets": result}
+
+
+@app.post("/api/start-sql-session")
+def start_sql_session(request: StartSessionRequest):
+    cleanup_old_sessions()
+
+    if request.dataset not in DATASETS:
+        raise HTTPException(
+            status_code=400,
+            detail="Unknown dataset."
+        )
+
+    master_db = DATASETS[request.dataset]["db_file"]
+
+    if not master_db.exists():
+        raise HTTPException(
+            status_code=500,
+            detail=f"Master database file not found: {master_db}",
+        )
+
+    session_id = str(uuid.uuid4())
+    session_db = get_session_db_path(session_id)
+
+    try:
+        shutil.copy(master_db, session_db)
+
+        conn = sqlite3.connect(session_db)
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS __session_metadata (
+                dataset TEXT NOT NULL,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP
+            );
+            """
+        )
+
+        cursor.execute("DELETE FROM __session_metadata;")
+
+        cursor.execute(
+            "INSERT INTO __session_metadata (dataset) VALUES (?);",
+            (request.dataset,),
+        )
+
+        conn.commit()
+        conn.close()
+
+        return {
+            "session_id": session_id,
+            "dataset": request.dataset,
+            "message": (
+                "SQL practice session started. "
+                "You are working on a temporary database copy."
+            ),
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/reset-sql-session")
+def reset_sql_session(request: ResetSessionRequest):
+    dataset = get_dataset_by_session(request.session_id)
+
+    if dataset not in DATASETS:
+        raise HTTPException(
+            status_code=400,
+            detail="Dataset is no longer configured."
+        )
+
+    master_db = DATASETS[dataset]["db_file"]
+    session_db = get_session_db_path(request.session_id)
+
+    try:
+        shutil.copy(master_db, session_db)
+
+        conn = sqlite3.connect(session_db)
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS __session_metadata (
+                dataset TEXT NOT NULL,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP
+            );
+            """
+        )
+
+        cursor.execute("DELETE FROM __session_metadata;")
+
+        cursor.execute(
+            "INSERT INTO __session_metadata (dataset) VALUES (?);",
+            (dataset,),
+        )
+
+        conn.commit()
+        conn.close()
+
+        return {
+            "message": (
+                "Session reset. Your temporary database copy has been restored "
+                "from the original master database."
+            ),
+            "session_id": request.session_id,
+            "dataset": dataset,
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/run-sql")
+def run_sql(request: RunSqlRequest):
+    cleanup_old_sessions()
+
+    db_path = get_session_db_path(request.session_id)
+
+    if not db_path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="Session not found. Please start a new SQL practice session."
+        )
+
+    query = request.query.strip()
+
+    if not query:
+        raise HTTPException(
+            status_code=400,
+            detail="SQL query cannot be empty."
+        )
+
+    try:
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        before_changes = conn.total_changes
+
+        cursor.executescript(query)
+
+        after_changes = conn.total_changes
+        conn.commit()
+
+        statements = [part.strip() for part in query.split(";") if part.strip()]
+        last_statement = statements[-1] if statements else ""
+
+        result = {
+            "message": "SQL executed successfully on your temporary database copy.",
+            "changes": after_changes - before_changes,
+            "columns": [],
+            "rows": [],
+            "row_limit": 100,
+        }
+
+        if (
+            last_statement.upper().startswith("SELECT")
+            or last_statement.upper().startswith("WITH")
+        ):
+            cursor.execute(last_statement)
+            rows = cursor.fetchmany(100)
+
+            columns = (
+                [description[0] for description in cursor.description]
+                if cursor.description
+                else []
+            )
+
+            result["columns"] = columns
+            result["rows"] = [list(row) for row in rows]
+
+        conn.close()
+        return result
+
+    except sqlite3.Error as e:
+        raise HTTPException(
+            status_code=400,
+            detail=f"SQL error: {str(e)}"
+        )
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/schema/{session_id}")
+def get_schema(session_id: str):
+    db_path = get_session_db_path(session_id)
+
+    if not db_path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="Session not found."
+        )
+
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            SELECT name
+            FROM sqlite_master
+            WHERE type='table'
+            AND name NOT LIKE 'sqlite_%'
+            AND name != '__session_metadata'
+            ORDER BY name;
+            """
+        )
+
+        tables = [row[0] for row in cursor.fetchall()]
+        schema = []
+
+        for table in tables:
+            safe_table_name = table.replace('"', '""')
+
+            cursor.execute(f'PRAGMA table_info("{safe_table_name}");')
+            columns = cursor.fetchall()
+
+            schema.append(
+                {
+                    "table": table,
+                    "columns": [
+                        {
+                            "name": column[1],
+                            "type": column[2],
+                            "not_null": bool(column[3]),
+                            "primary_key": bool(column[5]),
+                        }
+                        for column in columns
+                    ],
+                }
+            )
+
+        conn.close()
+
+        return {"schema": schema}
+
+    except sqlite3.Error as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+
+# ============================================================
+# STATIC FILE MOUNTS AND FRONTEND ROUTES
+# Keep these near the bottom.
+# The catch-all route must stay after the /api routes.
+# ============================================================
+
+os.makedirs(os.path.join(WEBSITE_DIR, "data"), exist_ok=True)
+os.makedirs(os.path.join(WEBSITE_DIR, "images"), exist_ok=True)
 
 app.mount("/data", StaticFiles(directory=os.path.join(WEBSITE_DIR, "data")), name="data")
 app.mount("/images", StaticFiles(directory=os.path.join(WEBSITE_DIR, "images")), name="images")

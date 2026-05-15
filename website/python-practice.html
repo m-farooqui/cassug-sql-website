@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Python Practice Lab | CASSUG</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lab.css" />
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+</head>
+<body>
+  <header class="lab-header">
+    <div>
+      <h1>Python Practice Lab</h1>
+      <p>Practice Python and analyze datasets directly in your browser.</p>
+    </div>
+  </header>
+
+  <nav class="lab-nav">
+    <a href="index.html">Home</a>
+    <a href="learning-lab.html">Learning Lab</a>
+    <a href="sql-practice.html" target="_blank" rel="noopener noreferrer">SQL Practice</a>
+    <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Metabase</a>
+  </nav>
+
+  <main class="lab-container lab-layout">
+
+    <section class="lab-card">
+      <h2>Dataset</h2>
+
+      <label for="datasetSelect">Choose dataset</label>
+      <select id="datasetSelect">
+        <option value="">Loading datasets...</option>
+      </select>
+
+      <div class="lab-button-row">
+        <button id="refreshDatasetsBtn" class="lab-secondary-button">Refresh Datasets</button>
+      </div>
+
+      <p id="datasetDescription" class="lab-small-note">
+        Choose a dataset to view its description.
+      </p>
+
+      <h2>Python Environment</h2>
+
+      <p>
+        Python runs in your browser using Pyodide. This lets users practice Python without running code directly on the backend server.
+      </p>
+
+      <div class="lab-button-row">
+        <button id="loadPyodideBtn" class="lab-primary-button">Load Python</button>
+        <button id="loadDatasetBtn" class="lab-secondary-button">Load Selected Dataset</button>
+        <button id="loadPythonExampleBtn" class="lab-secondary-button">Load Example</button>
+        <button id="clearPythonBtn" class="lab-secondary-button">Clear</button>
+      </div>
+
+      <p id="pythonStatus" class="lab-status-text">Python is not loaded yet.</p>
+
+      <h3>Dataset Status</h3>
+      <p id="datasetStatus" class="lab-small-note">
+        Dataset is not loaded yet.
+      </p>
+    </section>
+
+    <section class="lab-card lab-large-card">
+      <h2>Python Editor</h2>
+
+      <p class="lab-small-note">
+        After loading a dataset, it will be available as a pandas dataframe named <strong>df</strong>.
+      </p>
+
+      <textarea id="pythonEditor" class="lab-code-editor" spellcheck="false">print("Hello from the CASSUG Python Practice Lab!")</textarea>
+
+      <div class="lab-button-row">
+        <button id="runPythonBtn" class="lab-primary-button">Run Python</button>
+      </div>
+
+      <h3>Output</h3>
+      <pre id="pythonOutput" class="lab-output-box">Load Python, then run code.</pre>
+    </section>
+
+    <section class="lab-card">
+      <h2>Practice Ideas</h2>
+
+      <ol class="lab-question-list">
+        <li>Show the first 5 rows.</li>
+        <li>Count total rows.</li>
+        <li>View column names.</li>
+        <li>Check missing values.</li>
+        <li>Group by a category column.</li>
+        <li>Create a summary table.</li>
+        <li>Filter records.</li>
+      </ol>
+
+      <h3>General Example</h3>
+      <pre class="lab-output-box">print(df.head())
+print(df.shape)
+print(df.columns.tolist())
+print(df.isna().sum())</pre>
+
+      <h3>Tip</h3>
+      <p class="lab-small-note">
+        Use Load Example after choosing a dataset to get a dataset-specific starter script.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="lab-footer">
+    <p>CASSUG Python Practice Lab</p>
+  </footer>
+
+  <script src="python-practice.js"></script>
+</body>
+</html>

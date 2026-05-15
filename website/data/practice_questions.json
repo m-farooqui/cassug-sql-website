@@ -1,0 +1,607 @@
+{
+  "nyc_shootings": {
+    "domain": "Public Safety",
+    "name": "NYC Shootings Dataset",
+    "table": "shootings",
+    "sql_beginner": [
+      "Show the first 10 records.",
+      "Count the total number of incidents.",
+      "List all distinct boroughs.",
+      "Count incidents by borough.",
+      "Count incidents by precinct.",
+      "Find the earliest and latest incident dates.",
+      "Show incidents from BROOKLYN.",
+      "Show records where latitude or longitude is missing.",
+      "Count incidents by location description.",
+      "Find the top 10 most common locations."
+    ],
+    "sql_intermediate": [
+      "Which borough has the highest number of incidents?",
+      "Which precinct has the highest number of incidents?",
+      "Count incidents by year.",
+      "Count incidents by month.",
+      "Count incidents by borough and year.",
+      "Find the top 10 precincts by incident count.",
+      "Compare incidents by location classification.",
+      "Find the most common location description for each borough.",
+      "Calculate each borough's percentage of total incidents.",
+      "Create a summary table by borough with total incidents, first date, last date, and distinct precinct count."
+    ],
+    "sql_advanced": [
+      "Calculate year-over-year incident change.",
+      "Calculate year-over-year percentage change.",
+      "Rank boroughs by incidents within each year.",
+      "Find the top borough for each year.",
+      "Find the top precinct for each borough.",
+      "Compare incident volume before and after 2020.",
+      "Find boroughs with the largest increase between two selected years.",
+      "Create a monthly trend table by borough.",
+      "Identify years where incident count increased compared with the previous year.",
+      "Create an analyst summary with total incidents, average monthly incidents, peak year, and peak precinct by borough."
+    ],
+    "python_practice": [
+      "Load the dataset and inspect df.head(), df.shape, and df.info().",
+      "Check missing values by column.",
+      "Use value_counts() to summarize incidents by borough.",
+      "Use groupby() to summarize incidents by year.",
+      "Create a borough percentage breakdown.",
+      "Create a year-over-year change column.",
+      "Create a pivot table of year by borough.",
+      "Filter the dataset to one borough and summarize by precinct.",
+      "Find top precincts using pandas sorting.",
+      "Create a simple matplotlib bar chart of incidents by borough."
+    ],
+    "dashboard_practice": [
+      "Create a KPI card for total incidents.",
+      "Create a bar chart of incidents by borough.",
+      "Create a line chart of incidents by year.",
+      "Create a top 10 precincts table.",
+      "Create a map using latitude and longitude.",
+      "Add filters for borough, year, and precinct."
+    ]
+  },
+  "crime_reports": {
+    "domain": "Public Safety",
+    "name": "Crime Reports Dataset",
+    "table": "crime_reports",
+    "sql_beginner": [
+      "Show the first 10 crime reports.",
+      "Count total crime reports.",
+      "List all distinct crime types.",
+      "Count reports by crime type.",
+      "Count reports by neighborhood.",
+      "Count reports by reporting area.",
+      "Find records with missing neighborhood.",
+      "Find records with missing location.",
+      "Show reports for one selected neighborhood.",
+      "Show reports for one selected crime type."
+    ],
+    "sql_intermediate": [
+      "Which crime type appears most often?",
+      "Which neighborhood has the most reports?",
+      "Which reporting area has the most reports?",
+      "Count crime reports by neighborhood and crime type.",
+      "Find the top 10 locations by number of reports.",
+      "Find neighborhoods with more than 100 reports.",
+      "Count reports by year using the report date.",
+      "Count reports by month using the report date.",
+      "Find the most common crime type within each neighborhood.",
+      "Create a neighborhood summary with total reports, unique crimes, and unique locations."
+    ],
+    "sql_advanced": [
+      "Create a monthly trend of crime reports.",
+      "Rank neighborhoods by report count.",
+      "Find the top crime type for each neighborhood.",
+      "Calculate each neighborhood's percentage of total reports.",
+      "Identify crime types that appear across many neighborhoods.",
+      "Create a neighborhood-crime pivot-style summary.",
+      "Find reporting areas with unusually high report counts.",
+      "Compare crime report volume across neighborhoods.",
+      "Build a risk-style ranking based on total reports and diversity of crime types.",
+      "Create an analyst summary table by neighborhood."
+    ],
+    "python_practice": [
+      "Inspect rows, columns, and data types.",
+      "Check missing values by column.",
+      "Use value_counts() for crime type.",
+      "Use value_counts() for neighborhood.",
+      "Create a grouped summary by neighborhood and crime.",
+      "Create a monthly report trend if date columns are available.",
+      "Find top 10 reporting areas.",
+      "Create a pivot table of neighborhood by crime type.",
+      "Calculate neighborhood percentages.",
+      "Create a bar chart of reports by crime type."
+    ],
+    "dashboard_practice": [
+      "Create a KPI card for total reports.",
+      "Create a bar chart by crime type.",
+      "Create a bar chart by neighborhood.",
+      "Create a top reporting areas table.",
+      "Create a trend chart over time.",
+      "Add filters for neighborhood and crime type."
+    ]
+  },
+  "consumer_complaints": {
+    "domain": "Finance",
+    "name": "Consumer Complaints Dataset",
+    "table": "consumer_complaints",
+    "sql_beginner": [
+      "Show the first 10 complaints.",
+      "Count total complaints.",
+      "Count complaints by product.",
+      "Count complaints by company.",
+      "Count complaints by state.",
+      "Count complaints by submitted method.",
+      "Count complaints by timely response.",
+      "Count complaints by company response.",
+      "List all distinct products.",
+      "List all distinct issue types."
+    ],
+    "sql_intermediate": [
+      "Which product receives the most complaints?",
+      "Which company receives the most complaints?",
+      "Which state has the most complaints?",
+      "What percentage of complaints received a timely response?",
+      "Count complaints by product and issue.",
+      "Count complaints by company and product.",
+      "Find the top 10 issues by complaint count.",
+      "Find companies with the most disputed complaints.",
+      "Compare complaint submission methods.",
+      "Find monthly complaint volume."
+    ],
+    "sql_advanced": [
+      "Calculate complaint share by product.",
+      "Calculate complaint share by company.",
+      "Rank companies within each product by complaint count.",
+      "Find the most common issue for each product.",
+      "Find companies with the lowest timely response rate.",
+      "Compare disputed vs non-disputed complaints by company.",
+      "Calculate average days between date received and date sent to company.",
+      "Find states where one product dominates complaints.",
+      "Build a monthly complaint trend by product.",
+      "Create a company risk score using complaint count, dispute rate, and late-response rate."
+    ],
+    "python_practice": [
+      "Load the dataset and inspect rows and columns.",
+      "Check missing values.",
+      "Summarize complaints by product.",
+      "Summarize complaints by company.",
+      "Summarize complaints by state.",
+      "Create a timely response percentage.",
+      "Create a disputed complaint percentage.",
+      "Group complaints by product and company.",
+      "Create a monthly trend using pandas date conversion.",
+      "Create a bar chart of top complaint products."
+    ],
+    "dashboard_practice": [
+      "Create a KPI card for total complaints.",
+      "Create a bar chart by product.",
+      "Create a top companies chart.",
+      "Create a state-level table or map.",
+      "Create a monthly complaint trend.",
+      "Add filters for product, company, and state."
+    ]
+  },
+  "finance_economics": {
+    "domain": "Finance",
+    "name": "Finance and Economics Dataset",
+    "table": "finance_economics",
+    "sql_beginner": [
+      "Show the first 10 rows.",
+      "Count total records.",
+      "List distinct stock indexes.",
+      "Find earliest and latest dates.",
+      "Find average close price.",
+      "Find average inflation rate.",
+      "Find average unemployment rate.",
+      "Find average interest rate.",
+      "Find minimum and maximum gold price.",
+      "Find minimum and maximum crude oil price."
+    ],
+    "sql_intermediate": [
+      "Calculate average close price by stock index.",
+      "Find total trading volume by stock index.",
+      "Find average inflation rate by year.",
+      "Find average unemployment rate by year.",
+      "Find average GDP growth by year.",
+      "Find the year with the highest average gold price.",
+      "Find the year with the highest average crude oil price.",
+      "Compare consumer confidence by year.",
+      "Find years with inflation above a selected threshold.",
+      "Find records where close price is higher than open price."
+    ],
+    "sql_advanced": [
+      "Calculate daily price change.",
+      "Calculate daily percent return.",
+      "Rank stock indexes by average daily return.",
+      "Compare inflation rate and interest rate over time.",
+      "Compare unemployment and consumer confidence over time.",
+      "Compare oil price and inflation over time.",
+      "Calculate rolling average close price by stock index.",
+      "Find recession-like periods using low GDP growth and high unemployment.",
+      "Build a macroeconomic score using inflation, unemployment, and GDP growth.",
+      "Compare venture capital funding with corporate profits by year."
+    ],
+    "python_practice": [
+      "Convert the date column to datetime.",
+      "Calculate daily price change.",
+      "Calculate daily percent return.",
+      "Use groupby() to summarize by stock index.",
+      "Use groupby() to summarize by year.",
+      "Calculate correlation between inflation and interest rate.",
+      "Calculate correlation between unemployment and consumer confidence.",
+      "Create rolling averages.",
+      "Create a macroeconomic score column.",
+      "Create a line chart of close price over time."
+    ],
+    "dashboard_practice": [
+      "Create a line chart of close price over time.",
+      "Create a line chart of inflation vs interest rate.",
+      "Create a line chart of unemployment over time.",
+      "Create a bar chart of average GDP growth by year.",
+      "Create KPI cards for latest inflation, unemployment, and GDP growth.",
+      "Add filters for stock index and year."
+    ]
+  },
+  "heart_health": {
+    "domain": "Healthcare",
+    "name": "Heart Health Survey Dataset",
+    "table": "heart_health",
+    "sql_beginner": [
+      "Show the first 10 rows.",
+      "Count total survey records.",
+      "Count records by state.",
+      "Count records by sex.",
+      "Count records by general health.",
+      "Count heart attack yes/no.",
+      "Count diabetes yes/no.",
+      "Count smoker status.",
+      "Find average sleep hours.",
+      "Find average BMI."
+    ],
+    "sql_intermediate": [
+      "Compare heart attack counts by sex.",
+      "Compare heart attack counts by age category.",
+      "Compare diabetes counts by age category.",
+      "Find average BMI by heart attack status.",
+      "Find average sleep hours by general health.",
+      "Compare physical activity with heart attack status.",
+      "Compare smoking status with heart attack status.",
+      "Count COPD by smoker status.",
+      "Count depressive disorder by general health.",
+      "Find states with the highest heart attack count."
+    ],
+    "sql_advanced": [
+      "Calculate heart attack percentage by age category.",
+      "Calculate diabetes percentage by BMI group.",
+      "Compare average physical health days by general health.",
+      "Compare average mental health days by general health.",
+      "Analyze missing BMI values by state.",
+      "Build a basic risk profile using age, BMI, smoker status, diabetes, and physical activity.",
+      "Find combinations of health conditions that appear often together.",
+      "Compare COVID positive status with general health.",
+      "Create a state summary with total records, average BMI, average sleep hours, and heart attack rate.",
+      "Rank age categories by heart attack rate."
+    ],
+    "python_practice": [
+      "Inspect rows, columns, and data types.",
+      "Check missing values.",
+      "Calculate average BMI.",
+      "Calculate average sleep hours.",
+      "Use value_counts() for heart attack status.",
+      "Use groupby() for heart attack rate by age category.",
+      "Create BMI categories.",
+      "Compare smoker status and heart attack status.",
+      "Create a health risk score.",
+      "Create a bar chart of heart attack rate by age category."
+    ],
+    "dashboard_practice": [
+      "Create a KPI card for total survey records.",
+      "Create a bar chart of heart attack rate by age category.",
+      "Create a bar chart of average BMI by general health.",
+      "Create a stacked chart of smoker status by heart attack.",
+      "Add filters for state, sex, and age category."
+    ]
+  },
+  "pharma_sales_hourly": {
+    "domain": "Healthcare",
+    "name": "Pharmaceutical Sales Hourly Dataset",
+    "table": "pharma_sales_hourly",
+    "sql_beginner": [
+      "Show the first 10 rows.",
+      "Count total hourly records.",
+      "Find distinct years.",
+      "Find distinct months.",
+      "Find distinct hours.",
+      "Find distinct weekdays.",
+      "Calculate total sales for each drug category.",
+      "Find average sales per hour for each category.",
+      "Find maximum sales for each category.",
+      "Show records for a selected year."
+    ],
+    "sql_intermediate": [
+      "Calculate total sales by year.",
+      "Calculate total sales by month.",
+      "Calculate total sales by weekday.",
+      "Calculate total sales by hour of day.",
+      "Find which drug category has the highest total sales.",
+      "Find which hour has the highest average sales.",
+      "Find which weekday has the highest sales.",
+      "Compare monthly sales across years.",
+      "Find peak hours for N02BE.",
+      "Find average category sales by weekday."
+    ],
+    "sql_advanced": [
+      "Create a total_sales column across all drug categories.",
+      "Calculate month-over-month change.",
+      "Calculate year-over-year change.",
+      "Find seasonal patterns by month.",
+      "Find hourly demand patterns by weekday.",
+      "Rank drug categories by total yearly sales.",
+      "Create rolling average sales in Python.",
+      "Identify outlier sales hours.",
+      "Estimate next month using historical monthly averages.",
+      "Create an hour-by-weekday demand summary."
+    ],
+    "python_practice": [
+      "Inspect dataset structure.",
+      "Create a total_sales column.",
+      "Summarize total sales by year.",
+      "Summarize total sales by month.",
+      "Summarize total sales by weekday.",
+      "Summarize total sales by hour.",
+      "Create rolling averages.",
+      "Find outliers using standard deviation.",
+      "Create a pivot table of weekday by hour.",
+      "Create a line chart of monthly sales."
+    ],
+    "dashboard_practice": [
+      "Create a line chart of sales over time.",
+      "Create a bar chart of total sales by drug category.",
+      "Create a heatmap-style chart of hour by weekday.",
+      "Create a monthly trend by year.",
+      "Add filters for year, month, and drug category."
+    ]
+  },
+  "student_grades": {
+    "domain": "Education",
+    "name": "Student Grades and Programs Dataset",
+    "table": "student_grades",
+    "sql_beginner": [
+      "Show the first 10 rows.",
+      "Count total grade records.",
+      "Count records by school year.",
+      "Count records by grade level.",
+      "Count records by class type.",
+      "Count records by school name.",
+      "Find average grade percentage.",
+      "Find average grade by school year.",
+      "Count ELL records.",
+      "Count SPED records."
+    ],
+    "sql_intermediate": [
+      "Find average grade by class type.",
+      "Find average grade by grade level.",
+      "Find average grade by school.",
+      "Find average grade by school year and grade level.",
+      "Compare ELL vs non-ELL average grades.",
+      "Compare SPED vs non-SPED average grades.",
+      "Compare migrant vs non-migrant average grades.",
+      "Compare AVID vs non-AVID average grades.",
+      "Find the lowest average grade by class type.",
+      "Find grade trends over school years."
+    ],
+    "sql_advanced": [
+      "Calculate grade gap between ELL and non-ELL students.",
+      "Calculate grade gap between SPED and non-SPED students.",
+      "Rank schools by average grade.",
+      "Rank class types by average grade.",
+      "Find class types where ELL students have the largest grade gap.",
+      "Build a student support summary by program flag.",
+      "Identify grade levels with the largest performance variation.",
+      "Find schools with the highest percentage of ELL records.",
+      "Create a pivot-style table of grade level by class type.",
+      "Build an intervention-priority table using average grade and program flags."
+    ],
+    "python_practice": [
+      "Inspect rows, columns, and data types.",
+      "Check missing grade percentages.",
+      "Calculate average grade.",
+      "Summarize average grade by class type.",
+      "Summarize average grade by grade level.",
+      "Compare ELL and non-ELL students.",
+      "Compare SPED and non-SPED students.",
+      "Create a grade band column.",
+      "Create a pivot table by school year and class type.",
+      "Create a bar chart of average grade by class type."
+    ],
+    "dashboard_practice": [
+      "Create a KPI card for average grade percentage.",
+      "Create a bar chart of average grade by class type.",
+      "Create a bar chart of average grade by grade level.",
+      "Create a stacked chart of ELL by class type.",
+      "Add filters for school year, school, and grade level."
+    ]
+  },
+  "education_career_success": {
+    "domain": "Education",
+    "name": "Education Career Success Dataset",
+    "table": "education_career_success",
+    "sql_beginner": [
+      "Show the first 10 students.",
+      "Count total students.",
+      "Count students by field of study.",
+      "Count students by gender.",
+      "Count students by current job level.",
+      "Find average starting salary.",
+      "Find average university GPA.",
+      "Find average SAT score.",
+      "Find average job offers.",
+      "Find average career satisfaction."
+    ],
+    "sql_intermediate": [
+      "Find average starting salary by field of study.",
+      "Find average job offers by field of study.",
+      "Find average career satisfaction by job level.",
+      "Find average years to promotion by job level.",
+      "Compare salary by gender.",
+      "Compare salary by entrepreneurship status.",
+      "Compare job offers by internships completed.",
+      "Compare job offers by certifications.",
+      "Find fields with the highest average networking score.",
+      "Find fields with the highest average soft skills score."
+    ],
+    "sql_advanced": [
+      "Analyze correlation between university GPA and starting salary in Python.",
+      "Analyze correlation between internships and job offers.",
+      "Analyze correlation between projects and job offers.",
+      "Analyze correlation between networking score and starting salary.",
+      "Build a career readiness score using GPA, internships, projects, certifications, soft skills, and networking.",
+      "Rank fields of study by career outcomes.",
+      "Find students with high GPA but low job offers.",
+      "Find students with low GPA but high job offers.",
+      "Create salary bands and count students in each band.",
+      "Build an analyst summary table by field of study."
+    ],
+    "python_practice": [
+      "Inspect rows, columns, and data types.",
+      "Check missing values.",
+      "Calculate average salary by field of study.",
+      "Calculate job offers by internship count.",
+      "Calculate correlation between GPA and salary.",
+      "Create salary bands.",
+      "Create a career readiness score.",
+      "Find outlier salaries.",
+      "Create a scatter plot of GPA vs salary.",
+      "Create a grouped summary by field of study."
+    ],
+    "dashboard_practice": [
+      "Create KPI cards for average salary, average GPA, and average job offers.",
+      "Create a bar chart of salary by field.",
+      "Create a bar chart of job offers by internships.",
+      "Create a scatter plot of GPA vs starting salary.",
+      "Add filters for field of study, gender, and job level."
+    ]
+  },
+  "online_retail": {
+    "domain": "Retail / Business",
+    "name": "Online Retail Dataset",
+    "table": "online_retail",
+    "sql_beginner": [
+      "Show the first 10 rows.",
+      "Count total rows.",
+      "Count distinct invoices.",
+      "Count distinct customers.",
+      "Find average quantity.",
+      "Find average unit price.",
+      "Find minimum and maximum unit price.",
+      "Find minimum and maximum quantity.",
+      "Show rows where customer ID is null.",
+      "Show rows where quantity is greater than 10."
+    ],
+    "sql_intermediate": [
+      "Create total_sales as quantity times unit price.",
+      "Find total revenue.",
+      "Find revenue by customer.",
+      "Find top 10 customers by revenue.",
+      "Find total quantity by customer.",
+      "Find average order value by invoice.",
+      "Find invoices with the highest revenue.",
+      "Find customers with the most invoices.",
+      "Find customers with high quantity but low revenue.",
+      "Find negative or zero quantity records if any."
+    ],
+    "sql_advanced": [
+      "Build a customer revenue ranking.",
+      "Calculate revenue share of top 10 customers.",
+      "Identify repeat customers.",
+      "Create customer segments by revenue.",
+      "Create an invoice-level summary table.",
+      "Find customers with only one invoice.",
+      "Compare average quantity per invoice.",
+      "Find outlier invoices by revenue.",
+      "Build a customer lifetime value proxy.",
+      "Create a sales quality check for invalid quantities or prices."
+    ],
+    "python_practice": [
+      "Inspect rows, columns, and data types.",
+      "Create a total_sales column.",
+      "Calculate total revenue.",
+      "Summarize revenue by customer.",
+      "Summarize quantity by customer.",
+      "Create customer segments.",
+      "Find missing customer IDs.",
+      "Find invalid quantities or prices.",
+      "Create invoice-level summaries.",
+      "Create a bar chart of top customers."
+    ],
+    "dashboard_practice": [
+      "Create a KPI card for total revenue.",
+      "Create a KPI card for total customers.",
+      "Create a bar chart of top customers by revenue.",
+      "Create a table of top invoices by revenue.",
+      "Create a distribution of order values."
+    ]
+  },
+  "adidas_sales": {
+    "domain": "Retail / Business",
+    "name": "Adidas US Sales Dataset",
+    "table": "adidas_sales",
+    "sql_beginner": [
+      "Show the first 10 sales records.",
+      "Count total rows.",
+      "Count distinct retailers.",
+      "Count distinct regions.",
+      "Count distinct states.",
+      "Count distinct cities.",
+      "Count distinct products.",
+      "Count records by sales method.",
+      "Find total units sold.",
+      "Find total sales."
+    ],
+    "sql_intermediate": [
+      "Find total sales by retailer.",
+      "Find total sales by region.",
+      "Find total sales by state.",
+      "Find total sales by city.",
+      "Find total sales by product.",
+      "Find total sales by sales method.",
+      "Find total operating profit by retailer.",
+      "Find average operating margin by product.",
+      "Find average price per unit by product.",
+      "Find top 10 city-product combinations by sales."
+    ],
+    "sql_advanced": [
+      "Rank retailers by total sales.",
+      "Rank products by operating profit.",
+      "Calculate profit margin by region.",
+      "Compare online vs in-store sales.",
+      "Compare outlet vs online sales.",
+      "Find the most profitable product in each region.",
+      "Find each retailer's best-selling product.",
+      "Calculate monthly sales trend.",
+      "Calculate year-over-year sales if multiple years exist.",
+      "Build a regional performance score using sales, profit, and margin."
+    ],
+    "python_practice": [
+      "Inspect rows, columns, and data types.",
+      "Convert invoice date to datetime.",
+      "Calculate sales by retailer.",
+      "Calculate sales by region.",
+      "Calculate sales by product.",
+      "Calculate profit by product.",
+      "Compare sales methods.",
+      "Create a monthly sales trend.",
+      "Create a regional performance score.",
+      "Create a bar chart of sales by retailer."
+    ],
+    "dashboard_practice": [
+      "Create KPI cards for total sales, total profit, and units sold.",
+      "Create a bar chart of sales by retailer.",
+      "Create a bar chart of sales by region.",
+      "Create a state-level sales table.",
+      "Create a line chart of sales by invoice month.",
+      "Add filters for region, retailer, product, and sales method."
+    ]
+  }
+}

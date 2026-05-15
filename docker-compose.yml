@@ -1,21 +1,70 @@
 services:
-  website:
+  cassug-backend:
+    build:
+      context: ./backend
+    container_name: cassug-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+      - ./website:/website
+    restart: unless-stopped
+
+  sql-user-group-site:
     image: nginx:alpine
     container_name: sql-user-group-site
     ports:
       - "8080:80"
     volumes:
-      - ./website:/usr/share/nginx/html
+      - ./website:/usr/share/nginx/html:ro
+    depends_on:
+      - cassug-backend
     restart: unless-stopped
 
-  backend:
-    build: ./backend
-    container_name: cassug-backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./website:/website
+  analytics-postgres:
+    image: postgres:16
+    container_name: cassug-analytics-postgres
     environment:
-      - ADZUNA_APP_ID=e21eab1f
-      - ADZUNA_APP_KEY=f4a5404272522709be083d5837720ccc
+      POSTGRES_DB: analytics
+      POSTGRES_USER: analytics_user
+      POSTGRES_PASSWORD: analytics_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - analytics_postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: cassug-metabase
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase_data:/metabase-data
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+    depends_on:
+      - analytics-postgres
+    restart: unless-stopped
+
+  dataset-loader:
+    build:
+      context: ./backend
+    container_name: cassug-dataset-loader
+    volumes:
+      - ./backend/data:/app/data
+    environment:
+      POSTGRES_HOST: analytics-postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: analytics
+      POSTGRES_USER: analytics_user
+      POSTGRES_PASSWORD: analytics_password
+    depends_on:
+      - analytics-postgres
+    command: ["python", "load_shootings_to_postgres.py"]
+    profiles:
+      - tools
+
+volumes:
+  analytics_postgres_data:
+  metabase_data:

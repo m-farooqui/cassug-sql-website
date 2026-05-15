@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Learning Lab | CASSUG</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lab.css" />
+</head>
+<body>
+  <header class="lab-header">
+    <div>
+      <h1>Learning Lab</h1>
+      <p>Practice SQL, Python, and dashboard analytics using hands-on datasets.</p>
+    </div>
+  </header>
+
+  <nav class="lab-nav">
+    <a href="index.html">Home</a>
+    <a href="learning-lab.html">Learning Lab</a>
+    <a href="sql-practice.html" target="_blank" rel="noopener noreferrer">SQL Practice</a>
+    <a href="python-practice.html" target="_blank" rel="noopener noreferrer">Python Practice</a>
+    <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Metabase</a>
+  </nav>
+
+  <main class="lab-container">
+
+    <section class="lab-hero-card">
+      <h2>Hands-On Practice Area</h2>
+      <p>
+        This section helps members practice real-world data skills directly from the website.
+        You can practice SQL, analyze datasets with Python, and build visual dashboards using Metabase.
+      </p>
+
+      <p class="lab-note">
+        SQL Practice, Python Practice, and Metabase open in separate browser tabs so users can keep the main CASSUG website open.
+      </p>
+    </section>
+
+    <section class="lab-grid">
+
+      <article class="lab-card">
+        <h3>SQL Practice Lab</h3>
+        <p>
+          Practice SQL in a browser-based SQL interface. The SQL lab uses temporary database copies,
+          so users can run queries and practice safely without changing the original master database files.
+        </p>
+
+        <ul>
+          <li>Choose datasets by domain</li>
+          <li>Run SELECT, GROUP BY, JOIN, and filtering queries</li>
+          <li>Explore schema and table columns</li>
+          <li>Reset your temporary database copy when needed</li>
+        </ul>
+
+        <a class="lab-primary-button" href="sql-practice.html" target="_blank" rel="noopener noreferrer">
+          Open SQL Practice
+        </a>
+      </article>
+
+      <article class="lab-card">
+        <h3>Python Practice Lab</h3>
+        <p>
+          Practice Python directly in the browser using Pyodide. This lets users learn Python and pandas-style
+          analysis without running user code directly on the backend server.
+        </p>
+
+        <ul>
+          <li>Choose datasets by domain</li>
+          <li>Load the selected dataset as a dataframe named <strong>df</strong></li>
+          <li>Analyze data with pandas</li>
+          <li>Create summaries, filters, and grouped analysis</li>
+        </ul>
+
+        <a class="lab-primary-button" href="python-practice.html" target="_blank" rel="noopener noreferrer">
+          Open Python Practice
+        </a>
+      </article>
+
+      <article class="lab-card">
+        <h3>Metabase Visual Practice</h3>
+        <p>
+          Open Metabase to build charts and dashboards from practice datasets.
+          This gives users a Power BI-like visual analytics practice area inside the local Docker environment.
+        </p>
+
+        <ul>
+          <li>Create bar charts and line charts</li>
+          <li>Build dashboards</li>
+          <li>Practice filters and visual summaries</li>
+          <li>Use SQL questions inside Metabase</li>
+        </ul>
+
+        <a class="lab-primary-button" href="http://localhost:3000" target="_blank" rel="noopener noreferrer">
+          Open Metabase
+        </a>
+      </article>
+
+    </section>
+
+    <section class="lab-hero-card">
+      <h2>Current Practice Datasets by Domain</h2>
+
+      <div class="lab-grid">
+
+        <article class="lab-card">
+          <h3>Public Safety</h3>
+          <p>
+            <strong>NYC Shootings Dataset</strong>
+          </p>
+          <p>
+            Practice analysis using incident-level public safety data with borough, precinct,
+            date, time, location, latitude, and longitude fields.
+          </p>
+          <ul>
+            <li>SQL table: <strong>shootings</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: trend analysis, borough comparisons, maps, and precinct summaries</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Finance</h3>
+          <p>
+            <strong>Consumer Complaints Dataset</strong>
+          </p>
+          <p>
+            Practice finance and customer complaint analytics using product, issue, company,
+            state, response, dispute, and complaint fields.
+          </p>
+          <ul>
+            <li>SQL table: <strong>consumer_complaints</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: complaint volume, company ranking, state analysis, and issue trends</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Healthcare</h3>
+          <p>
+            <strong>Heart Health Survey Dataset</strong>
+          </p>
+          <p>
+            Practice healthcare analytics using survey-style data with lifestyle, health,
+            BMI, smoking, diabetes, sleep, and heart health indicators.
+          </p>
+          <ul>
+            <li>SQL table: <strong>heart_health</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: health risk summaries, missing values, grouped comparisons, and exploratory analysis</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Healthcare / Pharmacy</h3>
+          <p>
+            <strong>Pharmaceutical Sales Hourly Dataset</strong>
+          </p>
+          <p>
+            Practice time-series analytics using hourly pharmaceutical sales categories.
+          </p>
+          <ul>
+            <li>SQL table: <strong>pharma_sales_hourly</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: hourly trends, monthly trends, category analysis, and forecasting practice</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Education</h3>
+          <p>
+            <strong>Student Grades and Programs Dataset</strong>
+          </p>
+          <p>
+            Practice education analytics using student grade percentages, class type,
+            school year, grade level, and student program indicators.
+          </p>
+          <ul>
+            <li>SQL table: <strong>student_grades</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: grade trends, program comparisons, ELL/SPED analysis, and class type analysis</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Retail / Business</h3>
+          <p>
+            <strong>Online Retail Dataset</strong>
+          </p>
+          <p>
+            Practice business analytics using invoice, quantity, unit price,
+            stock code, customer, and country fields.
+          </p>
+          <ul>
+            <li>SQL table: <strong>online_retail</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: sales analysis, top customers, product revenue, basket analysis, and country summaries</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="lab-hero-card">
+      <h2>Suggested Practice by Tool</h2>
+
+      <div class="lab-grid">
+
+        <article class="lab-card">
+          <h3>Suggested SQL Practice</h3>
+          <p>Try questions like:</p>
+          <ul>
+            <li>Count records by category or domain-specific group</li>
+            <li>Find top 10 products, companies, precincts, or programs</li>
+            <li>Use WHERE to filter records</li>
+            <li>Use GROUP BY to summarize data</li>
+            <li>Use ORDER BY to rank results</li>
+            <li>Create temporary analysis tables</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Suggested Python Practice</h3>
+          <p>Try analysis like:</p>
+          <ul>
+            <li>Use <strong>df.head()</strong> to inspect rows</li>
+            <li>Use <strong>df.shape</strong> to count rows and columns</li>
+            <li>Use <strong>df.isna().sum()</strong> to check missing values</li>
+            <li>Use <strong>value_counts()</strong> for category counts</li>
+            <li>Use <strong>groupby()</strong> to create summaries</li>
+            <li>Create calculated columns for analysis</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Suggested Dashboard Practice</h3>
+          <p>Try building dashboards with:</p>
+          <ul>
+            <li>Total count card</li>
+            <li>Bar chart by category</li>
+            <li>Line chart by time period</li>
+            <li>Top 10 ranking table</li>
+            <li>Filters by year, state, borough, product, or class type</li>
+            <li>Map visuals where latitude and longitude are available</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="lab-hero-card">
+      <h2>Learning Path</h2>
+
+      <div class="lab-grid">
+        <article class="lab-card">
+          <h3>1. Start with SQL</h3>
+          <p>
+            Use SQL Practice to understand table structure, explore rows, filter records,
+            group data, and answer business-style questions.
+          </p>
+        </article>
+
+        <article class="lab-card">
+          <h3>2. Analyze with Python</h3>
+          <p>
+            Use Python Practice to create summaries, clean columns, calculate trends,
+            check missing data, and prepare deeper analysis.
+          </p>
+        </article>
+
+        <article class="lab-card">
+          <h3>3. Visualize with Metabase</h3>
+          <p>
+            Use Metabase to turn SQL and Python-style analysis into charts and dashboards
+            that are easier for non-technical users to understand.
+          </p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="lab-footer">
+    <p>CASSUG Learning Lab</p>
+  </footer>
+</body>
+</html>

@@ -1,4 +1,8 @@
 fastapi
-uvicorn
+uvicorn[standard]
 python-docx
 requests
+pydantic
+pandas
+sqlalchemy
+psycopg2-binary

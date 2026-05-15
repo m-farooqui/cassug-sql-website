@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment / secrets
+.env
+*.key
+*.pem
+*.ppk
+oracle_cassug.key
+oracle_cassug.key.pub
+
+# Temporary SQL practice session databases
+backend/data/databases/sessions/
+backend/data/databases/sessions/*.db
+
+# Logs
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated SQLite databases
+backend/data/databases/
+
+# Large local dataset files
+backend/data/source/
+website/data/datasets/
+
+# Generated SQLite databases
+backend/data/databases/

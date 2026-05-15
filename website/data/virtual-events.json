@@ -1,53 +1,27 @@
 [
   {
     "title": "SQL Community Engineering Connection Series Event",
-    "description": "SQL Community Engineering Connection Series Event"
-  },
-  {
-    "title": "2+ Virtual meetings per month on a wide variety of topics related to the Microsoft Data Platform. Lo",
-    "description": "2+ Virtual meetings per month on a wide variety of topics related to the Microsoft Data Platform. Lots of new features, products, and previews! Scheduled as CASSUG Meetups. Feel free to join virtually!"
+    "description": "SQL Community Engineering Connection Series Event 2+ Virtual meetings per month on a wide variety of topics related to the Microsoft Data Platform. Lots of new features, products, and previews! Scheduled as CASSUG Meetups. Feel free to join virtually!"
   },
   {
     "title": "Google Developer Groups",
-    "description": "Google Developer Groups"
-  },
-  {
-    "title": "Upcoming hackathon May 18th, 2026",
-    "description": "Upcoming hackathon May 18th, 2026: Hudson Valley Digital Rally Hackathon 2026 | HV Tech Festival",
+    "description": "Google Developer Groups Upcoming hackathon May 18th, 2026: Hudson Valley Digital Rally Hackathon 2026 | HV Tech Festival Open Data Set Collection: https://tinyurl.com/HVOpenData All Upcoming GDG Events: Google Developer Groups Capital Region Events: Google Developer Groups GDG Capital Region",
     "links": [
       {
         "label": "Hudson Valley Digital Rally Hackathon 2026 | HV Tech Festival",
         "url": "https://hvtechfest.com/2026/05/hackathon",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Open Data Set Collection",
-    "description": "Open Data Set Collection: https://tinyurl.com/HVOpenData",
-    "links": [
+      },
       {
         "label": "Open Link",
         "url": "https://tinyurl.com/HVOpenData",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "All Upcoming GDG Events",
-    "description": "All Upcoming GDG Events: Google Developer Groups",
-    "links": [
+      },
       {
         "label": "Google Developer Groups",
         "url": "https://gdg.community.dev/",
         "highlight": true
-      }
-    ]
-  },
-  {
-    "title": "Capital Region Events",
-    "description": "Capital Region Events: Google Developer Groups GDG Capital Region",
-    "links": [
+      },
       {
         "label": "Google Developer Groups GDG Capital Region",
         "url": "https://gdg.community.dev/gdg-capital-region/",
@@ -57,11 +31,7 @@
   },
   {
     "title": "Hudson Valley Can Code",
-    "description": "Hudson Valley Can Code"
-  },
-  {
-    "title": "https",
-    "description": "https://www.meetup.com/web-development-coding-computing",
+    "description": "Hudson Valley Can Code https://www.meetup.com/web-development-coding-computing",
     "links": [
       {
         "label": "Open Link",
@@ -72,15 +42,7 @@
   },
   {
     "title": "AWS Summit 2026 NYC",
-    "description": "AWS Summit 2026 NYC:"
-  },
-  {
-    "title": "June 17, 2026 @ Javits Convention Center",
-    "description": "June 17, 2026 @ Javits Convention Center"
-  },
-  {
-    "title": "https",
-    "description": "https://aws.amazon.com/events/summits/new-york/",
+    "description": "AWS Summit 2026 NYC: June 17, 2026 @ Javits Convention Center https://aws.amazon.com/events/summits/new-york/",
     "links": [
       {
         "label": "Open Link",

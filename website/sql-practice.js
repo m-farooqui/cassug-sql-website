@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8000";
+const API_BASE = window.location.origin;
 
 let currentSessionId = localStorage.getItem("cassug_sql_session_id") || null;
 

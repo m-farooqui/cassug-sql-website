@@ -15,7 +15,7 @@
   <header class="lab-header">
     <div>
       <h1>Python Practice Lab</h1>
-      <p>Practice Python and analyze datasets directly in your browser.</p>
+      <p>Practice Python, pandas, NumPy, SciPy, visualization, web scraping basics, SQLAlchemy, and machine learning.</p>
     </div>
   </header>
 
@@ -23,6 +23,8 @@
     <a href="index.html">Home</a>
     <a href="learning-lab.html">Learning Lab</a>
     <a href="sql-practice.html" target="_blank" rel="noopener noreferrer">SQL Practice</a>
+    <a href="visualization-practice.html" target="_blank" rel="noopener noreferrer">Visualization Practice</a>
+    <a href="ml-practice.html" target="_blank" rel="noopener noreferrer">Machine Learning Practice</a>
     <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Metabase</a>
   </nav>
 
@@ -31,38 +33,61 @@
     <section class="lab-card">
       <h2>Dataset</h2>
 
-      <label for="datasetSelect">Choose dataset</label>
+      <label for="datasetSelect">Choose built-in dataset</label>
       <select id="datasetSelect">
         <option value="">Loading datasets...</option>
       </select>
 
       <div class="lab-button-row">
         <button id="refreshDatasetsBtn" class="lab-secondary-button">Refresh Datasets</button>
+        <button id="loadDatasetBtn" class="lab-secondary-button">Load Selected Dataset</button>
       </div>
 
       <p id="datasetDescription" class="lab-small-note">
         Choose a dataset to view its description.
       </p>
 
-      <h2>Python Environment</h2>
-
-      <p>
-        Python runs in your browser using Pyodide. This lets users practice Python without running code directly on the backend server.
-      </p>
+      <h3>Upload Your Own CSV</h3>
+      <input id="csvUploadInput" type="file" accept=".csv" />
 
       <div class="lab-button-row">
-        <button id="loadPyodideBtn" class="lab-primary-button">Load Python</button>
-        <button id="loadDatasetBtn" class="lab-secondary-button">Load Selected Dataset</button>
-        <button id="loadPythonExampleBtn" class="lab-secondary-button">Load Example</button>
-        <button id="clearPythonBtn" class="lab-secondary-button">Clear</button>
+        <button id="loadUploadedCsvBtn" class="lab-secondary-button">Load Uploaded CSV</button>
       </div>
 
-      <p id="pythonStatus" class="lab-status-text">Python is not loaded yet.</p>
-
-      <h3>Dataset Status</h3>
       <p id="datasetStatus" class="lab-small-note">
         Dataset is not loaded yet.
       </p>
+    </section>
+
+    <section class="lab-card">
+      <h2>Python Environment</h2>
+
+      <p>
+        Python runs in your browser using Pyodide. This keeps practice code away from the backend server
+        while still allowing hands-on analysis.
+      </p>
+
+      <div class="lab-button-row">
+        <button id="loadPyodideBtn" class="lab-primary-button">Load Python + Libraries</button>
+        <button id="checkLibrariesBtn" class="lab-secondary-button">Check Libraries</button>
+      </div>
+
+      <p id="pythonStatus" class="lab-status-text">
+        Python is not loaded yet.
+      </p>
+
+      <h3>Available Practice Libraries</h3>
+      <ul>
+        <li><strong>pandas</strong> — data cleaning and analysis</li>
+        <li><strong>NumPy</strong> — numerical arrays and math</li>
+        <li><strong>SciPy</strong> — statistics and scientific computing</li>
+        <li><strong>Matplotlib</strong> — charts and plots</li>
+        <li><strong>Seaborn</strong> — statistical visualizations</li>
+        <li><strong>Plotly</strong> — interactive chart practice</li>
+        <li><strong>BeautifulSoup</strong> — HTML parsing / web scraping basics</li>
+        <li><strong>SQLAlchemy</strong> — database-style Python practice</li>
+        <li><strong>scikit-learn</strong> — machine learning basics</li>
+      </ul>
     </section>
 
     <section class="lab-card lab-large-card">
@@ -72,39 +97,60 @@
         After loading a dataset, it will be available as a pandas dataframe named <strong>df</strong>.
       </p>
 
-      <textarea id="pythonEditor" class="lab-code-editor" spellcheck="false">print("Hello from the CASSUG Python Practice Lab!")</textarea>
+      <label for="exampleSelect">Starter example</label>
+      <select id="exampleSelect">
+        <option value="dataset_overview">Dataset Overview</option>
+        <option value="pandas_groupby">Pandas GroupBy Summary</option>
+        <option value="missing_values">Missing Value Report</option>
+        <option value="numpy_summary">NumPy Numeric Summary</option>
+        <option value="scipy_stats">SciPy Statistics Example</option>
+        <option value="matplotlib_chart">Matplotlib Chart</option>
+        <option value="seaborn_chart">Seaborn Chart</option>
+        <option value="plotly_example">Plotly Example</option>
+        <option value="beautifulsoup_example">BeautifulSoup HTML Parsing</option>
+        <option value="sqlalchemy_example">SQLAlchemy In-Memory SQLite Example</option>
+        <option value="sklearn_example">scikit-learn Starter Model</option>
+      </select>
 
       <div class="lab-button-row">
+        <button id="loadPythonExampleBtn" class="lab-secondary-button">Load Example</button>
         <button id="runPythonBtn" class="lab-primary-button">Run Python</button>
+        <button id="clearPythonBtn" class="lab-secondary-button">Clear</button>
       </div>
+
+      <textarea id="pythonEditor" class="lab-code-editor" spellcheck="false">print("Hello from the CASSUG Python Practice Lab!")</textarea>
 
       <h3>Output</h3>
       <pre id="pythonOutput" class="lab-output-box">Load Python, then run code.</pre>
+
+      <h3>Chart Output</h3>
+      <div id="pythonChartOutput" class="lab-chart-box">
+        <p>Matplotlib or Seaborn charts will appear here when your code saves a chart to <strong>/tmp/python_plot.png</strong>.</p>
+      </div>
+    </section>
+
+    <section class="lab-card">
+      <h2>Dataset Preview</h2>
+      <div id="dataPreview" class="lab-table-scroll">
+        <p>Load a dataset to preview rows.</p>
+      </div>
     </section>
 
     <section class="lab-card">
       <h2>Practice Ideas</h2>
 
       <ol class="lab-question-list">
-        <li>Show the first 5 rows.</li>
-        <li>Count total rows.</li>
-        <li>View column names.</li>
-        <li>Check missing values.</li>
-        <li>Group by a category column.</li>
-        <li>Create a summary table.</li>
-        <li>Filter records.</li>
+        <li>Use <strong>df.head()</strong> to inspect records.</li>
+        <li>Use <strong>df.shape</strong> to count rows and columns.</li>
+        <li>Use <strong>df.info()</strong> to review data types.</li>
+        <li>Use <strong>df.isna().sum()</strong> to check missing values.</li>
+        <li>Use <strong>value_counts()</strong> for category counts.</li>
+        <li>Use <strong>groupby()</strong> for analyst summaries.</li>
+        <li>Create calculated columns.</li>
+        <li>Build charts with Matplotlib, Seaborn, or Plotly.</li>
+        <li>Parse simple HTML with BeautifulSoup.</li>
+        <li>Train starter models with scikit-learn.</li>
       </ol>
-
-      <h3>General Example</h3>
-      <pre class="lab-output-box">print(df.head())
-print(df.shape)
-print(df.columns.tolist())
-print(df.isna().sum())</pre>
-
-      <h3>Tip</h3>
-      <p class="lab-small-note">
-        Use Load Example after choosing a dataset to get a dataset-specific starter script.
-      </p>
     </section>
 
   </main>

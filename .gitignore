@@ -12,25 +12,20 @@ __pycache__/
 oracle_cassug.key
 oracle_cassug.key.pub
 
-# Temporary SQL practice session databases
-backend/data/databases/sessions/
-backend/data/databases/sessions/*.db
-
 # Logs
 *.log
 
-# Editor / OS
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# Generated SQLite databases
+# Docker / generated database files
 backend/data/databases/
+backend/data/databases/sessions/
+backend/data/databases/sessions/*.db
 
 # Large local dataset files
 backend/data/source/
 website/data/datasets/
 
-# Generated SQLite databases
-backend/data/databases/
+# OS/editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

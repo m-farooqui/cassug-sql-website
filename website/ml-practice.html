@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Machine Learning Practice Lab | CASSUG</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lab.css" />
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+</head>
+<body>
+  <header class="lab-header">
+    <div>
+      <h1>Machine Learning Practice Lab</h1>
+      <p>Practice building simple classification and regression models using the available datasets.</p>
+    </div>
+  </header>
+
+  <nav class="lab-nav">
+    <a href="index.html">Home</a>
+    <a href="learning-lab.html">Learning Lab</a>
+    <a href="sql-practice.html" target="_blank" rel="noopener noreferrer">SQL Practice</a>
+    <a href="python-practice.html" target="_blank" rel="noopener noreferrer">Python Practice</a>
+    <a href="visualization-practice.html" target="_blank" rel="noopener noreferrer">Visualization Practice</a>
+  </nav>
+
+  <main class="lab-container lab-layout">
+
+    <section class="lab-card">
+      <h2>Dataset</h2>
+
+      <label for="datasetSelect">Choose dataset</label>
+      <select id="datasetSelect">
+        <option value="">Loading datasets...</option>
+      </select>
+
+      <div class="lab-button-row">
+        <button id="refreshDatasetsBtn" class="lab-secondary-button">Refresh Datasets</button>
+        <button id="loadPythonBtn" class="lab-primary-button">Load ML Environment</button>
+        <button id="loadDatasetBtn" class="lab-secondary-button">Load Dataset</button>
+      </div>
+
+      <p id="datasetDescription" class="lab-small-note">
+        Choose a dataset to view its description.
+      </p>
+
+      <p id="pythonStatus" class="lab-status-text">
+        ML environment not loaded yet.
+      </p>
+
+      <p id="datasetStatus" class="lab-status-text">
+        Dataset not loaded yet.
+      </p>
+    </section>
+
+    <section class="lab-card">
+      <h2>Model Builder</h2>
+
+      <label for="targetColumnSelect">Target column</label>
+      <select id="targetColumnSelect">
+        <option value="">Load dataset first</option>
+      </select>
+
+      <label for="featureColumnsSelect">Feature columns</label>
+      <select id="featureColumnsSelect" multiple size="10">
+        <option value="">Load dataset first</option>
+      </select>
+
+      <p class="lab-small-note">
+        Hold Ctrl to select multiple feature columns.
+      </p>
+
+      <label for="problemTypeSelect">Problem type</label>
+      <select id="problemTypeSelect">
+        <option value="classification">Classification</option>
+        <option value="regression">Regression</option>
+      </select>
+
+      <label for="modelTypeSelect">Model type</label>
+      <select id="modelTypeSelect">
+        <option value="logistic_regression">Logistic Regression</option>
+        <option value="decision_tree_classifier">Decision Tree Classifier</option>
+        <option value="knn_classifier">KNN Classifier</option>
+        <option value="naive_bayes">Naive Bayes</option>
+      </select>
+
+      <label for="testSizeInput">Test size</label>
+      <input id="testSizeInput" type="number" value="0.25" min="0.1" max="0.5" step="0.05" />
+
+      <label for="maxRowsInput">Max rows to train</label>
+      <input id="maxRowsInput" type="number" value="5000" min="500" max="50000" step="500" />
+
+      <div class="lab-button-row">
+        <button id="loadExampleBtn" class="lab-secondary-button">Load Suggested Setup</button>
+        <button id="trainModelBtn" class="lab-primary-button">Train Model</button>
+        <button id="clearOutputBtn" class="lab-secondary-button">Clear</button>
+      </div>
+
+      <p id="modelMessage" class="lab-small-note">
+        Load a dataset, choose a target and features, then train a model.
+      </p>
+    </section>
+
+    <section class="lab-card lab-large-card">
+      <h2>Model Output</h2>
+      <pre id="modelOutput" class="lab-output-box">Load ML environment first.</pre>
+    </section>
+
+    <section class="lab-card">
+      <h2>Dataset Preview</h2>
+      <div id="dataPreview" class="lab-table-scroll">
+        <p>Load a dataset to preview rows.</p>
+      </div>
+    </section>
+
+    <section class="lab-card">
+      <h2>Practice Ideas</h2>
+      <div id="practiceIdeas">
+        <p>Load a dataset to see machine learning practice ideas.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="lab-footer">
+    <p>CASSUG Machine Learning Practice Lab</p>
+  </footer>
+
+  <script src="ml-practice.js"></script>
+</body>
+</html>

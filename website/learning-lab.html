@@ -13,7 +13,7 @@
   <header class="lab-header">
     <div>
       <h1>Learning Lab</h1>
-      <p>Practice SQL, Python, and dashboard analytics using hands-on datasets.</p>
+      <p>Practice SQL, Python, visualization, machine learning, and dashboard analytics using hands-on datasets.</p>
     </div>
   </header>
 
@@ -22,6 +22,8 @@
     <a href="learning-lab.html">Learning Lab</a>
     <a href="sql-practice.html" target="_blank" rel="noopener noreferrer">SQL Practice</a>
     <a href="python-practice.html" target="_blank" rel="noopener noreferrer">Python Practice</a>
+    <a href="visualization-practice.html" target="_blank" rel="noopener noreferrer">Visualization Practice</a>
+    <a href="ml-practice.html" target="_blank" rel="noopener noreferrer">Machine Learning Practice</a>
     <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Metabase</a>
   </nav>
 
@@ -31,11 +33,13 @@
       <h2>Hands-On Practice Area</h2>
       <p>
         This section helps members practice real-world data skills directly from the website.
-        You can practice SQL, analyze datasets with Python, and build visual dashboards using Metabase.
+        You can practice SQL, analyze datasets with Python, build interactive visuals with Plotly,
+        train beginner machine learning models, and later use Metabase for a BI-style dashboarding experience.
       </p>
 
       <p class="lab-note">
-        SQL Practice, Python Practice, and Metabase open in separate browser tabs so users can keep the main CASSUG website open.
+        SQL Practice, Python Practice, Visualization Practice, Machine Learning Practice, and Metabase open in separate browser tabs
+        so users can keep the main CASSUG website open.
       </p>
     </section>
 
@@ -80,10 +84,48 @@
       </article>
 
       <article class="lab-card">
+        <h3>Visualization Practice Lab</h3>
+        <p>
+          Practice building Power BI-style visuals using Plotly and the same datasets used in SQL and Python practice.
+          Choose datasets, select chart types, pick fields, aggregate values, and create interactive visuals.
+        </p>
+
+        <ul>
+          <li>Build bar, line, scatter, pie, histogram, box, heatmap, KPI, and table visuals</li>
+          <li>Use the same datasets from SQL and Python Practice</li>
+          <li>Practice choosing dimensions, measures, and aggregations</li>
+          <li>Prepare for dashboard and BI analyst work</li>
+        </ul>
+
+        <a class="lab-primary-button" href="visualization-practice.html" target="_blank" rel="noopener noreferrer">
+          Open Visualization Practice
+        </a>
+      </article>
+
+      <article class="lab-card">
+        <h3>Machine Learning Practice Lab</h3>
+        <p>
+          Practice basic machine learning workflows using the available datasets.
+          Choose a dataset, select a target column, choose feature columns, train a model, and review metrics.
+        </p>
+
+        <ul>
+          <li>Practice classification and regression</li>
+          <li>Use scikit-learn models in the browser</li>
+          <li>Review accuracy, precision, recall, F1, MAE, RMSE, and R²</li>
+          <li>Learn how analysts turn datasets into predictive models</li>
+        </ul>
+
+        <a class="lab-primary-button" href="ml-practice.html" target="_blank" rel="noopener noreferrer">
+          Open Machine Learning Practice
+        </a>
+      </article>
+
+      <article class="lab-card">
         <h3>Metabase Visual Practice</h3>
         <p>
-          Open Metabase to build charts and dashboards from practice datasets.
-          This gives users a Power BI-like visual analytics practice area inside the local Docker environment.
+          Metabase is currently optional and can stay local for now. Later, it can be used as a separate visual analytics
+          practice area for building dashboards from the same datasets.
         </p>
 
         <ul>
@@ -107,6 +149,7 @@
 
         <article class="lab-card">
           <h3>Public Safety</h3>
+
           <p>
             <strong>NYC Shootings Dataset</strong>
           </p>
@@ -119,10 +162,23 @@
             <li>Python dataframe: <strong>df</strong></li>
             <li>Good for: trend analysis, borough comparisons, maps, and precinct summaries</li>
           </ul>
+
+          <p>
+            <strong>Crime Reports Dataset</strong>
+          </p>
+          <p>
+            Practice crime report analysis using crime type, reporting area, neighborhood, and location fields.
+          </p>
+          <ul>
+            <li>SQL table: <strong>crime_reports</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: neighborhood summaries, crime type ranking, and report trend analysis</li>
+          </ul>
         </article>
 
         <article class="lab-card">
           <h3>Finance</h3>
+
           <p>
             <strong>Consumer Complaints Dataset</strong>
           </p>
@@ -135,10 +191,24 @@
             <li>Python dataframe: <strong>df</strong></li>
             <li>Good for: complaint volume, company ranking, state analysis, and issue trends</li>
           </ul>
+
+          <p>
+            <strong>Finance and Economics Dataset</strong>
+          </p>
+          <p>
+            Practice macroeconomic and financial market analysis using inflation, unemployment,
+            GDP growth, interest rates, commodities, stock indexes, and consumer indicators.
+          </p>
+          <ul>
+            <li>SQL table: <strong>finance_economics</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: trend analysis, correlation practice, macroeconomic summaries, and financial dashboards</li>
+          </ul>
         </article>
 
         <article class="lab-card">
           <h3>Healthcare</h3>
+
           <p>
             <strong>Heart Health Survey Dataset</strong>
           </p>
@@ -151,10 +221,7 @@
             <li>Python dataframe: <strong>df</strong></li>
             <li>Good for: health risk summaries, missing values, grouped comparisons, and exploratory analysis</li>
           </ul>
-        </article>
 
-        <article class="lab-card">
-          <h3>Healthcare / Pharmacy</h3>
           <p>
             <strong>Pharmaceutical Sales Hourly Dataset</strong>
           </p>
@@ -170,6 +237,7 @@
 
         <article class="lab-card">
           <h3>Education</h3>
+
           <p>
             <strong>Student Grades and Programs Dataset</strong>
           </p>
@@ -182,10 +250,24 @@
             <li>Python dataframe: <strong>df</strong></li>
             <li>Good for: grade trends, program comparisons, ELL/SPED analysis, and class type analysis</li>
           </ul>
+
+          <p>
+            <strong>Education Career Success Dataset</strong>
+          </p>
+          <p>
+            Practice education and career outcome analytics using GPA, field of study, internships,
+            projects, certifications, job offers, starting salary, satisfaction, and job level.
+          </p>
+          <ul>
+            <li>SQL table: <strong>education_career_success</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: salary analysis, career outcome comparisons, GPA correlations, and job offer analysis</li>
+          </ul>
         </article>
 
         <article class="lab-card">
           <h3>Retail / Business</h3>
+
           <p>
             <strong>Online Retail Dataset</strong>
           </p>
@@ -196,7 +278,20 @@
           <ul>
             <li>SQL table: <strong>online_retail</strong></li>
             <li>Python dataframe: <strong>df</strong></li>
-            <li>Good for: sales analysis, top customers, product revenue, basket analysis, and country summaries</li>
+            <li>Good for: sales analysis, top customers, product revenue, basket analysis, and customer summaries</li>
+          </ul>
+
+          <p>
+            <strong>Adidas US Sales Dataset</strong>
+          </p>
+          <p>
+            Practice retail and business analytics using sales by retailer, region, state, city,
+            product, price, units sold, total sales, operating profit, margin, and sales method.
+          </p>
+          <ul>
+            <li>SQL table: <strong>adidas_sales</strong></li>
+            <li>Python dataframe: <strong>df</strong></li>
+            <li>Good for: product sales, retailer performance, regional dashboards, and profit analysis</li>
           </ul>
         </article>
 
@@ -213,11 +308,11 @@
           <p>Try questions like:</p>
           <ul>
             <li>Count records by category or domain-specific group</li>
-            <li>Find top 10 products, companies, precincts, or programs</li>
+            <li>Find top 10 products, companies, precincts, programs, or regions</li>
             <li>Use WHERE to filter records</li>
             <li>Use GROUP BY to summarize data</li>
             <li>Use ORDER BY to rank results</li>
-            <li>Create temporary analysis tables</li>
+            <li>Create temporary analysis tables inside your practice copy</li>
           </ul>
         </article>
 
@@ -235,6 +330,32 @@
         </article>
 
         <article class="lab-card">
+          <h3>Suggested Visualization Practice</h3>
+          <p>Try building visuals with:</p>
+          <ul>
+            <li>KPI cards for total counts, revenue, averages, or rates</li>
+            <li>Bar charts by category</li>
+            <li>Line charts by date or year</li>
+            <li>Pie or donut charts for share of total</li>
+            <li>Scatter plots for numeric relationships</li>
+            <li>Heatmaps for two-category comparisons</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
+          <h3>Suggested Machine Learning Practice</h3>
+          <p>Try modeling tasks like:</p>
+          <ul>
+            <li>Predict a category using classification</li>
+            <li>Predict a numeric value using regression</li>
+            <li>Choose a target column and feature columns</li>
+            <li>Compare model performance using common metrics</li>
+            <li>Review sample predictions against actual values</li>
+            <li>Discuss whether the dataset is appropriate for machine learning</li>
+          </ul>
+        </article>
+
+        <article class="lab-card">
           <h3>Suggested Dashboard Practice</h3>
           <p>Try building dashboards with:</p>
           <ul>
@@ -242,7 +363,7 @@
             <li>Bar chart by category</li>
             <li>Line chart by time period</li>
             <li>Top 10 ranking table</li>
-            <li>Filters by year, state, borough, product, or class type</li>
+            <li>Filters by year, state, borough, product, retailer, or class type</li>
             <li>Map visuals where latitude and longitude are available</li>
           </ul>
         </article>
@@ -271,10 +392,26 @@
         </article>
 
         <article class="lab-card">
-          <h3>3. Visualize with Metabase</h3>
+          <h3>3. Visualize with Plotly</h3>
           <p>
-            Use Metabase to turn SQL and Python-style analysis into charts and dashboards
-            that are easier for non-technical users to understand.
+            Use Visualization Practice to turn your SQL and Python-style summaries into
+            interactive charts like bar charts, line charts, scatter plots, heatmaps, and KPI cards.
+          </p>
+        </article>
+
+        <article class="lab-card">
+          <h3>4. Practice Machine Learning</h3>
+          <p>
+            Use Machine Learning Practice to choose targets, select features, train beginner models,
+            and review classification or regression metrics.
+          </p>
+        </article>
+
+        <article class="lab-card">
+          <h3>5. Build BI Dashboards Later</h3>
+          <p>
+            Use Metabase later as a separate dashboarding practice tool when you are ready
+            to bring back the full BI-style visual analytics environment.
           </p>
         </article>
       </div>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Visualization Practice Lab | CASSUG</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lab.css" />
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <header class="lab-header">
+    <div>
+      <h1>Visualization Practice Lab</h1>
+      <p>Practice building Power BI-style visuals using the same datasets from SQL and Python Practice.</p>
+    </div>
+  </header>
+
+  <nav class="lab-nav">
+    <a href="index.html">Home</a>
+    <a href="learning-lab.html">Learning Lab</a>
+    <a href="sql-practice.html" target="_blank" rel="noopener noreferrer">SQL Practice</a>
+    <a href="python-practice.html" target="_blank" rel="noopener noreferrer">Python Practice</a>
+  </nav>
+
+  <main class="lab-container lab-layout">
+
+    <section class="lab-card">
+      <h2>Dataset</h2>
+
+      <label for="datasetSelect">Choose dataset</label>
+      <select id="datasetSelect">
+        <option value="">Loading datasets...</option>
+      </select>
+
+      <div class="lab-button-row">
+        <button id="refreshDatasetsBtn" class="lab-secondary-button">Refresh Datasets</button>
+        <button id="loadDatasetBtn" class="lab-primary-button">Load Dataset</button>
+      </div>
+
+      <p id="datasetDescription" class="lab-small-note">
+        Choose a dataset to view its description.
+      </p>
+
+      <p id="datasetStatus" class="lab-status-text">
+        Dataset not loaded yet.
+      </p>
+    </section>
+
+    <section class="lab-card">
+      <h2>Visual Builder</h2>
+
+      <label for="chartTypeSelect">Chart type</label>
+      <select id="chartTypeSelect">
+        <option value="bar">Bar Chart</option>
+        <option value="horizontal_bar">Horizontal Bar Chart</option>
+        <option value="line">Line Chart</option>
+        <option value="scatter">Scatter Plot</option>
+        <option value="bubble">Bubble Chart</option>
+        <option value="pie">Pie Chart</option>
+        <option value="donut">Donut Chart</option>
+        <option value="histogram">Histogram</option>
+        <option value="box">Box Plot</option>
+        <option value="area">Area Chart</option>
+        <option value="heatmap">Heatmap</option>
+        <option value="kpi">KPI Card</option>
+        <option value="table">Summary Table</option>
+      </select>
+
+      <label for="xColumnSelect">X / category column</label>
+      <select id="xColumnSelect">
+        <option value="">Load dataset first</option>
+      </select>
+
+      <label for="yColumnSelect">Y / value column</label>
+      <select id="yColumnSelect">
+        <option value="">Load dataset first</option>
+      </select>
+
+      <label for="colorColumnSelect">Group / color column</label>
+      <select id="colorColumnSelect">
+        <option value="">None</option>
+      </select>
+
+      <label for="aggregationSelect">Aggregation</label>
+      <select id="aggregationSelect">
+        <option value="count">Count Rows</option>
+        <option value="sum">Sum</option>
+        <option value="avg">Average</option>
+        <option value="min">Minimum</option>
+        <option value="max">Maximum</option>
+      </select>
+
+      <label for="limitInput">Limit categories</label>
+      <input id="limitInput" type="number" value="20" min="5" max="100" />
+
+      <div class="lab-button-row">
+        <button id="buildChartBtn" class="lab-primary-button">Build Visual</button>
+        <button id="loadExampleBtn" class="lab-secondary-button">Load Suggested Visual</button>
+        <button id="clearChartBtn" class="lab-secondary-button">Clear</button>
+      </div>
+
+      <p id="chartMessage" class="lab-small-note">
+        Load a dataset, choose fields, then build a visual.
+      </p>
+    </section>
+
+    <section class="lab-card lab-large-card">
+      <h2>Visual Output</h2>
+      <div id="chartOutput" class="lab-chart-box">
+        <p>Chart will appear here.</p>
+      </div>
+    </section>
+
+    <section class="lab-card">
+      <h2>Dataset Preview</h2>
+      <div id="dataPreview" class="lab-table-scroll">
+        <p>Load a dataset to preview rows.</p>
+      </div>
+    </section>
+
+    <section class="lab-card">
+      <h2>Practice Ideas</h2>
+      <div id="practiceIdeas">
+        <p>Load a dataset to see visualization practice ideas.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="lab-footer">
+    <p>CASSUG Visualization Practice Lab</p>
+  </footer>
+
+  <script src="visualization-practice.js"></script>
+</body>
+</html>

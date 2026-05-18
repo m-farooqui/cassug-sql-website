@@ -1,3 +1,16 @@
+# Full local datasets - too large for GitHub
+backend/data/source/
+website/data/datasets/
+
+# Generated SQLite DBs
+backend/data/databases/
+
+# Do not ignore sample datasets
+!backend/data/sample_source/
+!backend/data/sample_source/**
+!website/data/sample_datasets/
+!website/data/sample_datasets/**
+
 # Python cache
 __pycache__/
 *.pyc
@@ -15,17 +28,8 @@ oracle_cassug.key.pub
 # Logs
 *.log
 
-# Docker / generated database files
-backend/data/databases/
-backend/data/databases/sessions/
-backend/data/databases/sessions/*.db
-
-# Large local dataset files
-backend/data/source/
-website/data/datasets/
-
-# OS/editor
-.vscode/
-.idea/
+# OS/editor files
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
